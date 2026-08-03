@@ -109,6 +109,10 @@ An item sold by a single store.
 
 Products are **store-specific**.
 
+###Category
+
+A product has a category
+
 ### Order
 
 Represents a reservation created by a customer.
@@ -193,6 +197,8 @@ Store
 
 Product
  └── belongs to Store
+ └── Category
+
 
 Order
  ├── Customer
