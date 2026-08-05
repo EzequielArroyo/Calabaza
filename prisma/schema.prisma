@@ -1,0 +1,144 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  CUSTOMER
+  STORE_OWNER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PREPARING
+  READY_FOR_PICKUP
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  firstName String   @map("first_name") @db.VarChar(100)
+  lastName  String   @map("last_name") @db.VarChar(100)
+  email     String   @unique @db.VarChar(255)
+  phone     String?  @db.VarChar(30)
+  role      UserRole
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  store  Store?
+  orders Order[] @relation("CustomerOrders")
+
+  @@map("users")
+}
+
+model Store {
+  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  ownerId     String  @unique @map("owner_id") @db.Uuid
+  name        String  @db.VarChar(150)
+  description String?
+  address     String
+
+  latitude    Decimal @db.Decimal(10, 7)
+  longitude   Decimal @db.Decimal(10, 7)
+
+  phone       String? @db.VarChar(30)
+  isOpen      Boolean @default(true) @map("is_open")
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  owner      User      @relation(fields: [ownerId], references: [id])
+  products   Product[]
+  orders     Order[]
+
+  @@index([ownerId])
+  @@map("stores")
+}
+
+model Category {
+  id        String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String @unique @db.VarChar(100)
+  slug      String @unique @db.VarChar(100)
+
+  products  Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id          String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  storeId     String @map("store_id") @db.Uuid
+  categoryId  String @map("category_id") @db.Uuid
+
+  name        String @db.VarChar(200)
+  description String?
+  price       Decimal @db.Decimal(10,2)
+  stock       Int
+
+  imageUrl    String? @map("image_url")
+  active      Boolean @default(true)
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  store        Store      @relation(fields: [storeId], references: [id])
+  category     Category   @relation(fields: [categoryId], references: [id])
+  orderItems   OrderItem[]
+
+  @@index([storeId])
+  @@index([categoryId])
+  @@map("products")
+}
+
+model Order {
+  id          String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  customerId  String @map("customer_id") @db.Uuid
+  storeId     String @map("store_id") @db.Uuid
+
+  status      OrderStatus
+  total       Decimal @db.Decimal(10,2)
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  expiredAt   DateTime @map("expired_at")
+
+  customer    User @relation("CustomerOrders", fields: [customerId], references: [id])
+  store       Store @relation(fields: [storeId], references: [id])
+
+  items       OrderItem[]
+
+  @@index([customerId])
+  @@index([storeId])
+  @@map("orders")
+}
+
+model OrderItem {
+  id         String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  orderId    String @map("order_id") @db.Uuid
+  productId  String @map("product_id") @db.Uuid
+
+  quantity   Int
+  price      Decimal @db.Decimal(10,2)
+
+  order       Order   @relation(fields: [orderId], references: [id])
+  product     Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_items")
+}
