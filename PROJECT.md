@@ -297,6 +297,23 @@ Once an order is Ready for Pickup, only the store may cancel it.
 
 ---
 
+## Design System & UI
+
+### Color Palette & Tokens
+- Primary: `#E36414` 
+- Secondary: `#2D5A27` 
+- Accent / Tertiary: `#F28C28` 
+- Neutral: `#FFFBF2` 
+- Font Family: Inter / Sans-serif
+
+### Responsive Guidelines
+- **Approach**: Mobile-First.
+- **Breakpoints**: Standard Tailwind breakpoints (`sm: 640px`, `md: 768px`, `lg: 1024px`, `xl: 1280px`).
+- **Layout Requirements**:
+  - All pages and UI components must be fully usable on mobile screens (360px+).
+  - Use responsive layouts (e.g., single column on mobile, multi-column grid/flex on `md:` and above).
+
+---
 # Coding Conventions
 
 - Use English for code.

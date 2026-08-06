@@ -63,6 +63,12 @@ Always:
 - Reuse UI components.
 - Avoid inline styles.
 
+- **Use Theme Tokens**: Always use the defined Tailwind color tokens (`primary`, `secondary`, `accent`) and default font families. Never use arbitrary HEX codes (e.g., `#FF6B00`) directly in class names.
+- **Mobile-First Responsive Layouts**:
+  - Always design for mobile viewports first.
+  - Add responsive prefixes (`md:`, `lg:`) for tablet and desktop views.
+  - Ensure navigation, forms, product lists, and cards render correctly on small screens without horizontal scroll.
+
 ---
 
 # Out of Scope
