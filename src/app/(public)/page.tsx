@@ -1,6 +1,6 @@
 import { CategoryList } from "@/components/ui/CategoryList";
 import ProductGrid from "@/components/products/ProductGrid";
-import { SearchBar } from "@/components/products/SearchBar";
+import { SearchBar } from "@/components/ui/SearchBar";
 
 export default async function Page(props: {
   searchParams?: Promise<{
