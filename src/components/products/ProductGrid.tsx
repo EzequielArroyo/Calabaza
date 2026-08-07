@@ -1,10 +1,11 @@
-import { ProductCard, type ProductCardItem } from "./ProductCard";
+import { ProductCard } from "./ProductCard";
+import { getProducts } from "@/modules/products/data";
 
-type ProductGridProps = {
-  products: ProductCardItem[];
-};
 
-export function ProductGrid({ products }: ProductGridProps) {
+
+export default async function ProductGrid({ query }: { query: string }) {
+  const products = await getProducts(query);
+
   if (!products.length) {
     return (
       <div className="rounded-3xl border border-dashed border-primary/20 bg-white/70 p-8 text-center text-sm text-secondary/70">

@@ -1,28 +1,12 @@
-export type ProductCardItem = {
-  id: string;
-  name: string;
-  description?: string | null;
-  price: number;
-  stock?: number;
-  imageUrl?: string | null;
-  category?: {
-    name: string;
-  } | null;
-  store?: {
-    name: string;
-  } | null;
-};
+import { ProductCardItem } from "@/modules/products/types";
+
 
 type ProductCardProps = {
   product: ProductCardItem;
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const formattedPrice = new Intl.NumberFormat("es-CO", {
-    style: "currency",
-    currency: "COP",
-    maximumFractionDigits: 0,
-  }).format(product.price);
+  const formattedPrice = Number(product.price.toString());
 
   return (
     <article className="overflow-hidden rounded-3xl border border-primary/20 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
