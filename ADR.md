@@ -208,10 +208,10 @@ UI Design System and Responsive Strategy.
 
 ### Choice
 1. **Palette & Typography**:
-   - Primary: `#E36414` <span style="color:#E36414">&#9724;<span>
-   - Secondary: `#2D5A27` <span style="color:#2D5A27">&#9724;<span>
-   - Accent / Tertiary: `#F28C28` <span style="color:#F28C28">&#9724;<span>
-   - Neutral: `#FFFBF2` <span style="color:#FFFBF2">&#9724;<span> 
+   - Primary: `#E36414` 
+   - Secondary: `#2D5A27` 
+   - Accent / Tertiary: `#F28C28` 
+   - Neutral: `#FFFBF2`
    - Font Family: Inter / Sans-serif
 2. **Responsive Approach**: Mobile-first design pattern. Desktop layout adapts via Tailwind CSS grid and flex utilities (`md:`, `lg:`).
 

@@ -300,10 +300,10 @@ Once an order is Ready for Pickup, only the store may cancel it.
 ## Design System & UI
 
 ### Color Palette & Tokens
-- Primary: `#E36414` 
-- Secondary: `#2D5A27` 
-- Accent / Tertiary: `#F28C28` 
-- Neutral: `#FFFBF2` 
+- Primary: `#E36414` <span style="color:#E36414">&#9724;<span>
+- Secondary: `#2D5A27` <span style="color:#2D5A27">&#9724;<span>
+- Accent / Tertiary: `#F28C28` <span style="color:#F28C28">&#9724;<span>
+- Neutral: `#FFFBF2` <span style="color:#FFFBF2">&#9724;<span> 
 - Font Family: Inter / Sans-serif
 
 ### Responsive Guidelines
