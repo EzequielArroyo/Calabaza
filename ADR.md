@@ -212,7 +212,8 @@ UI Design System and Responsive Strategy.
    - Secondary: `#2D5A27` 
    - Accent / Tertiary: `#F28C28` 
    - Neutral: `#FFFBF2`
-   - Font Family: Inter / Sans-serif
+   - Font Headline: Manrope
+   - Font Body: Hanken Grotesk 
 2. **Responsive Approach**: Mobile-first design pattern. Desktop layout adapts via Tailwind CSS grid and flex utilities (`md:`, `lg:`).
 
 ### Context
