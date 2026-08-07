@@ -12,14 +12,31 @@ export async function getProducts(searchQuery?: string) {
         gt: 0,
       },
       ...(searchQuery && {
-        name: {
-          contains: searchQuery,
-          mode: Prisma.QueryMode.insensitive,
-        },
+        OR: [
+          {
+            name: {
+              contains: searchQuery,
+              mode: Prisma.QueryMode.insensitive,
+            },
+          },
+          {
+            store: {
+              name: {
+                contains: searchQuery,
+                mode: Prisma.QueryMode.insensitive,
+              },
+            },
+          },
+        ],
       }),
     },
     include: {
-      store: true,
+      store: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
       category: true,
     },
     orderBy: {
@@ -57,7 +74,7 @@ export async function getProductsByStore(storeId: string) {
 
 export async function createProduct(data: CreateProductDto) {
   return prisma.product.create({
-    data,
+    data
   });
 }
 
