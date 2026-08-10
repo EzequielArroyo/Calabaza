@@ -4,7 +4,7 @@ import  prisma  from "@/lib/prisma";
 
 import type { CreateProductDto, UpdateProductDto } from "./types";
 
-export async function getProducts(searchQuery?: string) {
+export async function getProducts(searchQuery?: string, categorySlug?: string) {
   return prisma.product.findMany({
     where: {
       active: true,
@@ -29,6 +29,11 @@ export async function getProducts(searchQuery?: string) {
           },
         ],
       }),
+      ...(categorySlug && {
+        category: {
+          slug: categorySlug,
+        },
+      }),
     },
     include: {
       store: {
@@ -38,9 +43,6 @@ export async function getProducts(searchQuery?: string) {
         },
       },
       category: true,
-    },
-    orderBy: {
-      createdAt: "desc",
     },
   });
 }

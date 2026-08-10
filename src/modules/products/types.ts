@@ -1,5 +1,5 @@
-import { Category } from "@/components/ui/CategoryListWithSearchBar";
 import { Decimal } from "@/generated/prisma/internal/prismaNamespace";
+import { Category } from "../categories/types";
 
 export interface ProductFilters {
   searchQuery?: string;
@@ -32,7 +32,7 @@ export interface ProductCardItem {
   price: Decimal;
   stock?: number;
   imageUrl?: string | null;
-  category?: Category
+  category?: Category;
   store?: {
     id: string;
     name: string;
