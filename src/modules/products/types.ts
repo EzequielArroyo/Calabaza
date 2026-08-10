@@ -30,7 +30,7 @@ export interface ProductCardItem {
   name: string;
   description?: string | null;
   price: Decimal;
-  stock?: number;
+  stock: number;
   imageUrl?: string | null;
   category?: Category;
   store?: {

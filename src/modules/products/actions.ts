@@ -9,11 +9,11 @@ import { createProductSchema, updateProductSchema } from "./validators";
 export async function createProductAction(formData: FormData) {
   const parsed = createProductSchema.safeParse({
     storeId: formData.get("storeId"),
-    categoryId: formData.get("categoryId"),
+    categoryId: Number(formData.get("categoryId")),
     name: formData.get("name"),
     description: formData.get("description"),
-    price: formData.get("price"),
-    stock: formData.get("stock"),
+    price: Number(formData.get("price")),
+    stock: Number(formData.get("stock")),
     imageUrl: formData.get("imageUrl"),
     active: formData.get("active") === "true",
   });

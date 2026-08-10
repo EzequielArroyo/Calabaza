@@ -6,14 +6,14 @@ import {
   optionalUrlSchema,
   priceSchema,
   requiredStringSchema,
-  stockSchema,
+  intSchema,
   uuidSchema,
 } from "@/modules/shared/validators";
 
 export const createProductSchema = z.object({
   storeId: uuidSchema,
 
-  categoryId: uuidSchema,
+  categoryId: intSchema,
 
   name: requiredStringSchema(3, 200),
 
@@ -21,7 +21,7 @@ export const createProductSchema = z.object({
 
   price: priceSchema,
 
-  stock: stockSchema,
+  stock: intSchema,
 
   imageUrl: optionalUrlSchema,
 
