@@ -2,6 +2,7 @@
 
 import { useActionState, useState } from "react";
 
+import { InputMap } from "@/components/ui/InputMap";
 import { createStore } from "@/modules/stores/actions";
 import type { ActionResult } from "@/modules/shared/actionResult";
 
@@ -17,6 +18,7 @@ export default function StoreForm() {
   const [state, formAction, isPending] = useActionState(createStore, initialState);
   const [locationMessage, setLocationMessage] = useState<string>();
   const [isLocating, setIsLocating] = useState(false);
+  const [location, setLocation] = useState({ latitude: "", longitude: "" });
 
   function captureCurrentLocation() {
     if (!navigator.geolocation) {
@@ -29,11 +31,10 @@ export default function StoreForm() {
 
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
-        const latitudeInput = document.getElementById("latitude") as HTMLInputElement | null;
-        const longitudeInput = document.getElementById("longitude") as HTMLInputElement | null;
-
-        if (latitudeInput) latitudeInput.value = coords.latitude.toFixed(7);
-        if (longitudeInput) longitudeInput.value = coords.longitude.toFixed(7);
+        setLocation({
+          latitude: coords.latitude.toFixed(7),
+          longitude: coords.longitude.toFixed(7),
+        });
 
         setLocationMessage("Ubicación actual cargada. Podés ajustar las coordenadas si lo necesitás.");
         setIsLocating(false);
@@ -90,17 +91,10 @@ export default function StoreForm() {
             {isLocating ? "Obteniendo ubicación..." : "Usar mi ubicación actual"}
           </button>
           {locationMessage && <p aria-live="polite" className="mt-2 text-sm text-secondary/80">{locationMessage}</p>}
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className="mb-1.5 block text-sm font-semibold text-secondary" htmlFor="latitude">Latitud <span aria-hidden="true">*</span></label>
-              <input className="w-full rounded-lg border border-secondary/25 bg-white px-3 py-2.5 text-secondary outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20" id="latitude" name="latitude" required step="any" type="number" />
-              <FieldError errors={state.errors?.latitude} />
-            </div>
-            <div>
-              <label className="mb-1.5 block text-sm font-semibold text-secondary" htmlFor="longitude">Longitud <span aria-hidden="true">*</span></label>
-              <input className="w-full rounded-lg border border-secondary/25 bg-white px-3 py-2.5 text-secondary outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20" id="longitude" name="longitude" required step="any" type="number" />
-              <FieldError errors={state.errors?.longitude} />
-            </div>
+          <div className="mt-4">
+            <InputMap latitude={location.latitude} longitude={location.longitude} />
+            <FieldError errors={state.errors?.latitude} />
+            <FieldError errors={state.errors?.longitude} />
           </div>
         </fieldset>
       </div>
