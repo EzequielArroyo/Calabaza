@@ -308,7 +308,7 @@ export type OrderScalarWhereWithAggregatesInput = {
 
 export type OrderCreateInput = {
   id?: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -322,7 +322,7 @@ export type OrderUncheckedCreateInput = {
   id?: string
   customerId: string
   storeId: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -358,7 +358,7 @@ export type OrderCreateManyInput = {
   id?: string
   customerId: string
   storeId: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -545,7 +545,7 @@ export type OrderUpdateOneRequiredWithoutItemsNestedInput = {
 
 export type OrderCreateWithoutCustomerInput = {
   id?: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -557,7 +557,7 @@ export type OrderCreateWithoutCustomerInput = {
 export type OrderUncheckedCreateWithoutCustomerInput = {
   id?: string
   storeId: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -607,7 +607,7 @@ export type OrderScalarWhereInput = {
 
 export type OrderCreateWithoutStoreInput = {
   id?: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -619,7 +619,7 @@ export type OrderCreateWithoutStoreInput = {
 export type OrderUncheckedCreateWithoutStoreInput = {
   id?: string
   customerId: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -655,7 +655,7 @@ export type OrderUpdateManyWithWhereWithoutStoreInput = {
 
 export type OrderCreateWithoutItemsInput = {
   id?: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -668,7 +668,7 @@ export type OrderUncheckedCreateWithoutItemsInput = {
   id?: string
   customerId: string
   storeId: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -716,7 +716,7 @@ export type OrderUncheckedUpdateWithoutItemsInput = {
 export type OrderCreateManyCustomerInput = {
   id?: string
   storeId: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -758,7 +758,7 @@ export type OrderUncheckedUpdateManyWithoutCustomerInput = {
 export type OrderCreateManyStoreInput = {
   id?: string
   customerId: string
-  status: $Enums.OrderStatus
+  status?: $Enums.OrderStatus
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   updatedAt?: Date | string
