@@ -1,5 +1,6 @@
 import { Decimal } from "@/generated/prisma/internal/prismaNamespace";
 import { Category } from "../categories/types";
+import { Prisma } from "@/generated/prisma/client";
 
 export interface ProductFilters {
   searchQuery?: string;
@@ -36,5 +37,11 @@ export interface ProductCardItem {
   store?: {
     id: string;
     name: string;
-  }
+  };
 }
+export type ProductDetail = Prisma.ProductGetPayload<{
+  include: {
+    store: true;
+    category: true;
+  };
+}>;

@@ -36,7 +36,7 @@ export const priceSchema = z.coerce.number().positive();
 /**
  * Cantidad de stock.
  */
-export const stockSchema = z.coerce.number().int().min(0);
+export const intSchema = z.coerce.number().int().min(0);
 
 /**
  * Boolean desde FormData.
