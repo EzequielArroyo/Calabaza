@@ -1,0 +1,21 @@
+import { notFound } from "next/navigation";
+
+import { ProductDetailView } from "@/components/products/ProductDetailView";
+import { getProductById } from "@/modules/products/data";
+
+type ProductPageProps = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { id } = await params;
+  const product = await getProductById(id);
+
+  if (!product) {
+    notFound();
+  }
+
+  return <ProductDetailView product={product} />;
+}

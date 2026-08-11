@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ProductCardItem } from "@/modules/products/types";
 
 
@@ -48,9 +49,12 @@ export function ProductCard({ product }: ProductCardProps) {
 
         <div className="mt-2 flex items-center justify-between gap-3">
           <p className="text-lg font-semibold text-secondary">{formattedPrice}</p>
-          <button className="rounded-full bg-secondary px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-primary">
+          <Link
+            href={`/products/${product.id}`}
+            className="rounded-full bg-secondary px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-primary"
+          >
             Ver detalles
-          </button>
+          </Link>
         </div>
       </div>
     </article>

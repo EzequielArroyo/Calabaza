@@ -2,7 +2,7 @@ import { Prisma } from "@/generated/prisma/client";
 
 import  prisma  from "@/lib/prisma";
 
-import type { CreateProductDto, UpdateProductDto } from "./types";
+import type { CreateProductDto, ProductDetail, UpdateProductDto } from "./types";
 
 export async function getProducts(searchQuery?: string, categorySlug?: string) {
   return prisma.product.findMany({
@@ -47,7 +47,7 @@ export async function getProducts(searchQuery?: string, categorySlug?: string) {
   });
 }
 
-export async function getProductById(id: string) {
+export async function getProductById(id: string): Promise<ProductDetail | null> {
   return prisma.product.findUnique({
     where: {
       id,
