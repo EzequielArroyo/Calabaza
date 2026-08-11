@@ -4,7 +4,7 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../src/generated/prisma"
 }
 
@@ -109,7 +109,7 @@ model Order {
   customerId  String @map("customer_id") @db.Uuid
   storeId     String @map("store_id") @db.Uuid
 
-  status      OrderStatus
+  status      OrderStatus @default(PENDING)
   total       Decimal @db.Decimal(10,2)
 
   createdAt   DateTime @default(now()) @map("created_at")
