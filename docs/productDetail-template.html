@@ -1,0 +1,411 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Calabaza - Wild Yeast Artisan Sourdough</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&amp;family=Hanken+Grotesk:wght@400..700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed": "#351000",
+              "soil-green": "#2D5A27",
+              "surface-dim": "#dddad1",
+              "inverse-primary": "#ffb693",
+              "primary-fixed": "#ffdbcc",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed-variant": "#6e3900",
+              "on-error": "#ffffff",
+              "on-primary-fixed-variant": "#7a3000",
+              "surface-container-high": "#ece8df",
+              primary: "#9c3f00",
+              background: "#fdf9f0",
+              "inverse-surface": "#31312b",
+              parchment: "#FFFBF2",
+              "primary-container": "#c45100",
+              "inverse-on-surface": "#f4f0e8",
+              "surface-container": "#f1eee5",
+              "surface-bright": "#fdf9f0",
+              "on-surface-variant": "#584238",
+              "on-secondary-fixed": "#002201",
+              "secondary-fixed": "#bcf0ae",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              error: "#ba1a1a",
+              "on-primary-container": "#fffbff",
+              "tertiary-fixed": "#ffdcc3",
+              "secondary-container": "#b9eeab",
+              "surface-container-highest": "#e6e2d9",
+              "status-cancelled": "#991B1B",
+              tertiary: "#8d4b00",
+              "on-error-container": "#93000a",
+              "surface-tint": "#a04100",
+              "on-tertiary-container": "#fffbff",
+              "on-background": "#1c1c17",
+              "on-tertiary-fixed": "#2f1500",
+              surface: "#fdf9f0",
+              "tertiary-container": "#b15f00",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#e6e2d9",
+              "pulp-orange": "#E36414",
+              "harvest-gold": "#F28C28",
+              "on-surface": "#1c1c17",
+              "status-ready": "#2D5A27",
+              "secondary-fixed-dim": "#a1d494",
+              "primary-fixed-dim": "#ffb693",
+              secondary: "#3b6934",
+              "status-pending": "#F28C28",
+              "on-secondary-container": "#3f6d38",
+              "surface-container-low": "#f7f3ea",
+              "tertiary-fixed-dim": "#ffb77d",
+              outline: "#8c7166",
+              "outline-variant": "#e0c0b2",
+              "on-secondary-fixed-variant": "#23501e",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              gutter: "24px",
+              "margin-desktop": "40px",
+              base: "8px",
+              "container-max": "1280px",
+              "margin-mobile": "16px",
+            },
+            fontFamily: {
+              "headline-xl": ["Manrope"],
+              "body-lg": ["Hanken Grotesk"],
+              "label-md": ["Hanken Grotesk"],
+              "headline-lg-mobile": ["Manrope"],
+              "headline-lg": ["Manrope"],
+              "headline-md": ["Manrope"],
+              "label-sm": ["Hanken Grotesk"],
+              "body-md": ["Hanken Grotesk"],
+            },
+            fontSize: {
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg-mobile": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "700" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "label-sm": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: theme("colors.parchment");
+        color: theme("colors.on-surface");
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+
+      .icon-fill {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <!-- Main Content Canvas -->
+  <main
+    class="flex-1 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12 w-full grid grid-cols-1 md:grid-cols-12 gap-gutter"
+  >
+    <!-- Left Column: Image & Badges -->
+    <section class="col-span-1 md:col-span-7 flex flex-col gap-6">
+      <div
+        class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-container shadow-lg group"
+      >
+        <img
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+          data-alt="A highly detailed close-up shot of a freshly baked artisan sourdough bread loaf resting on a rustic wooden table. The bread has a dark, crackling crust dusted with white flour, and deep scoring patterns. Warm, natural sunlight streams in from a nearby window, highlighting the texture of the crust and creating soft shadows. The setting suggests a cozy, organic local neighborhood bakery with a warm, inviting 'Modern Harvest' aesthetic. The color palette features rich golden browns, deep oranges, and soft parchment tones."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHG4YM-ZqvcUlH_V02q1de2VO2KkBI9a5GFXwYIlqGN7UC5drBQhIKHJDyNbkwXVGMXFYmhJ6Odo3bcAyjri8gpDMax--AmCKkrrPDzgTuCJxLSmcoF3_r5_r1PTKG2qu3nxnhE4-BuDU_GVU6Sxx3B-ungSDWNbekyzUDPyZ0bmU4YuMfig837H2mh5x_c30Lqe8qeTT0inttbOs_4n4j1aQJDp2eqtvuxH34oVCtxGYQNJraVlakNA"
+        />
+        <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+          <span
+            class="bg-surface-container-high/90 backdrop-blur-sm text-soil-green font-label-md text-label-md px-4 py-1.5 rounded-full border border-surface-variant shadow-sm flex items-center gap-1"
+          >
+            <span class="material-symbols-outlined text-[16px]"
+              >bakery_dining</span
+            >
+            Baked Goods
+          </span>
+          <span
+            class="bg-secondary-container/90 backdrop-blur-sm text-on-secondary-container font-label-md text-label-md px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1"
+          >
+            <span class="material-symbols-outlined text-[16px]">eco</span>
+            Organic
+          </span>
+        </div>
+      </div>
+      <!-- Additional thumbnails could go here -->
+      <div class="flex gap-4 overflow-x-auto pb-2 hidden md:flex">
+        <div
+          class="w-24 h-24 rounded-lg bg-surface-container overflow-hidden border-2 border-pulp-orange cursor-pointer flex-shrink-0"
+        >
+          <img
+            class="w-full h-full object-cover"
+            data-alt="Close up of a sourdough bread crust, showing the intricate crackling texture and dusting of flour. Warm lighting, rustic wooden background, soft shadows."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlioENZ6NhGK3R2o9XrpGAXbURnMrpdxX9veeQdwSnRIW3QPgATP72DSa8HgQVjbcScpPLhQ6Yt-MJRPqUK764Wj0BCdeDyWArLdsH-tSJVAH31YW7-63UK2IJ7yepamf_0cmpnP7CJOZn0xVohvpS4HNM3K-obXsJUC2zi5_NcHJz20_l7SHDaiYmlzGvqe0UMIYSEA6uWs1SsOM_G_F12ukm20LHPGjy3wUhh2W7HI_AfH6omrGVUw"
+          />
+        </div>
+        <div
+          class="w-24 h-24 rounded-lg bg-surface-container overflow-hidden border-2 border-transparent hover:border-soil-green cursor-pointer transition-colors flex-shrink-0 opacity-70 hover:opacity-100"
+        >
+          <img
+            class="w-full h-full object-cover"
+            data-alt="A slice of artisanal sourdough bread on a wooden cutting board, revealing an open, airy crumb structure with large holes. Soft morning light, organic feel."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDXyDb6UP9N8MwxT1zMatEjDwHZ_jnUQOHybT9QpigYSthe9QmbInumBp9ZMHHBReGtzDpaTl_BbVZGv8RB5tiVtR7dB3QWwouisOflvW0NCexIal60MArK13SwN2s-Q4va9Sm9iQJcyey7mP7rlwB8k1zDNgBwLKyRR2TMep29FWYIxo6nDxPxXipN1JdAEXq6N96RP1dVKKXZhS9Iku0tF91oB4J65bjTqEpgP8q7kgv-S3UsBcI7g"
+          />
+        </div>
+      </div>
+    </section>
+    <!-- Right Column: Product Details -->
+    <section
+      class="col-span-1 md:col-span-5 flex flex-col gap-6 self-start bg-surface-container-lowest p-6 md:p-8 rounded-xl shadow-[0_4px_24px_rgba(227,100,20,0.06)] border border-surface-variant"
+    >
+      <div>
+        <div class="flex justify-between items-start mb-2">
+          <h1 class="font-headline-lg text-headline-lg text-on-surface">
+            Wild Yeast Artisan Sourdough
+          </h1>
+          <button
+            class="text-soil-green hover:text-pulp-orange transition-colors p-2 rounded-full hover:bg-surface-container-high"
+          >
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+        <p class="font-headline-md text-headline-md text-pulp-orange font-bold">
+          $8.50
+        </p>
+      </div>
+      <div
+        class="flex items-center gap-2 bg-surface-container-low p-3 rounded-lg border border-surface-variant"
+      >
+        <span class="bg-status-ready w-3 h-3 rounded-full animate-pulse"></span>
+        <span class="font-label-md text-label-md text-soil-green"
+          >5 available for pickup today</span
+        >
+        <span class="text-outline mx-2">|</span>
+        <span class="material-symbols-outlined text-soil-green text-sm"
+          >schedule</span
+        >
+        <span class="font-label-md text-label-md text-on-surface-variant"
+          >Baked Today</span
+        >
+      </div>
+      <div
+        class="prose prose-p:font-body-lg prose-p:text-body-lg prose-p:text-on-surface-variant mt-2"
+      >
+        <p>
+          Our signature loaf, crafted over 48 hours using wild yeast cultivated
+          from local organic grapes. Features a deeply caramelized, blistered
+          crust and a chewy, open crumb with a balanced tangy flavor profile.
+        </p>
+        <p class="mt-4">
+          Perfect for avocado toast, dipping in quality olive oil, or simply
+          enjoying with cultured butter.
+        </p>
+      </div>
+      <div
+        class="mt-4 pt-6 border-t border-surface-variant flex flex-col gap-4"
+      >
+        <button
+          class="w-full bg-pulp-orange text-parchment font-headline-md text-[20px] py-4 rounded-lg hover:bg-primary-container transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 group"
+        >
+          <span
+            class="material-symbols-outlined group-hover:scale-110 transition-transform"
+            >shopping_bag</span
+          >
+          Reserve for Pickup
+        </button>
+        <p
+          class="text-center font-label-sm text-label-sm text-outline flex items-center justify-center gap-1"
+        >
+          <span class="material-symbols-outlined text-[14px]">info</span>
+          Payment collected at store during pickup.
+        </p>
+      </div>
+    </section>
+    <!-- Merchant Info Section -->
+    <section
+      class="col-span-1 md:col-span-12 mt-12 pt-12 border-t border-surface-variant"
+    >
+      <h2
+        class="font-headline-md text-headline-md text-soil-green mb-8 flex items-center gap-2"
+      >
+        <span class="material-symbols-outlined icon-fill text-pulp-orange"
+          >storefront</span
+        >
+        Merchant Info
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        <!-- Merchant Details Card -->
+        <div
+          class="bg-surface-container-lowest p-6 rounded-xl border border-surface-variant shadow-[0_2px_12px_rgba(45,90,39,0.04)] flex flex-col justify-between hover:shadow-[0_4px_16px_rgba(45,90,39,0.08)] transition-shadow"
+        >
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="font-headline-md text-headline-md text-on-surface">
+                  Oak &amp; Iron Bakery
+                </h3>
+                <div class="flex items-center gap-1 mt-1 text-harvest-gold">
+                  <span class="material-symbols-outlined icon-fill text-sm"
+                    >star</span
+                  >
+                  <span
+                    class="font-label-md text-label-md text-on-surface-variant mr-2"
+                    >4.9 (128 reviews)</span
+                  >
+                </div>
+              </div>
+              <img
+                class="w-16 h-16 rounded-full border border-surface-variant object-cover"
+                data-alt="A minimalist logo for a bakery called 'Oak &amp; Iron Bakery', featuring a stylized wheat stalk and a subtle iron anvil motif, set against a warm parchment background, clean organic design."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjSk0yXIXcOoTS5JrlY-B4U0zERv4Lj6DfRnv5offxiS86nt4XgDUKNh1BXAho7BI2zazjAP5Lb3RjjFYIPAwXLMTpwodn9C3dO5jB0CoMs0gc0PcJncj1Bj04MUaWB630L7vGnLV2ODOqVIB09HadLReiAlg9kOGLWcZFf9ZKvzcwCMyHl-6mPh6tKx5yfIrUXKpyKY9bc42Ml2mB1_qeZYWui9brK4vwfKAG2XJYkxqrT69_vrljCA"
+              />
+            </div>
+            <div class="space-y-3 mt-6">
+              <div class="flex items-start gap-3 text-on-surface-variant">
+                <span class="material-symbols-outlined text-soil-green mt-0.5"
+                  >location_on</span
+                >
+                <div class="font-body-md text-body-md">
+                  <p class="font-bold text-on-surface">1.2 miles away</p>
+                  <p>1422 Elm Street, Market District</p>
+                  <p>Portland, OR 97204</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 text-on-surface-variant">
+                <span class="material-symbols-outlined text-soil-green mt-0.5"
+                  >schedule</span
+                >
+                <div class="font-body-md text-body-md">
+                  <p>
+                    <span class="font-bold text-status-ready">Open Now</span> •
+                    Closes at 4:00 PM
+                  </p>
+                  <p class="text-sm text-outline mt-1">
+                    Tuesday - Sunday: 7AM - 4PM
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="mt-8 w-full border-2 border-soil-green text-soil-green font-label-md text-label-md py-3 rounded-lg hover:bg-soil-green hover:text-parchment transition-colors flex items-center justify-center gap-2"
+          >
+            View Store Profile
+            <span class="material-symbols-outlined text-[18px]"
+              >arrow_forward</span
+            >
+          </button>
+        </div>
+        <!-- Map Container -->
+        <div
+          class="h-64 md:h-auto rounded-xl overflow-hidden border border-surface-variant shadow-sm relative group"
+        >
+          <img
+            class="w-full h-full object-cover"
+            data-location="Portland"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl1zf_zHXBhDx7_2Zg8CJ-FrY8bm8Fxt-rZZQxMIaDMF9_OYBBbFIuJp9pzPLm2x3LMrlrMMlzBUHUQ8MoT3oIpW27mTtctZ3Z1KbdrGH9yx3GD2dLLtXch_U3VqGHwawMctvlAL7RZ8AV5mHUT2ka-n7fraGazaEZBPDxKTcu5u54LyxBrLro1nHAFGFlJsBEVbXEWGvAqQi4bdM83tMwmz2VhpgQ_MFkA5icaVIwIyV3PrzQajw9kw"
+          />
+          <!-- Fake map pin -->
+          <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center"
+          >
+            <div
+              class="bg-pulp-orange text-parchment p-2 rounded-full shadow-lg group-hover:-translate-y-1 transition-transform"
+            >
+              <span class="material-symbols-outlined icon-fill"
+                >bakery_dining</span
+              >
+            </div>
+            <div
+              class="w-2 h-2 bg-pulp-orange rounded-full mt-1 opacity-50 blur-[2px]"
+            ></div>
+          </div>
+          <button
+            class="absolute bottom-4 right-4 bg-surface-container-lowest text-soil-green font-label-sm text-label-sm px-4 py-2 rounded-full shadow-md border border-surface-variant hover:bg-surface-container transition-colors flex items-center gap-1"
+          >
+            <span class="material-symbols-outlined text-[16px]"
+              >directions</span
+            >
+            Get Directions
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+</html>
