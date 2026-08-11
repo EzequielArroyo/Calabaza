@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { ProductDetail } from "@/modules/products/types";
 
 import { AddToCartSection } from "./AddToCartSection";
-import { StoreMap } from "./StoreMap";
+import { Map } from "../ui/Map";
 
 type ProductDetailViewProps = {
   product: ProductDetail;
@@ -51,7 +51,7 @@ export function ProductDetailView({ product }: ProductDetailViewProps) {
           <h2 className="mt-2 text-2xl font-bold text-secondary">{product.store.name}</h2>
           <p className="mt-2 text-secondary/80">{product.store.address}</p>
         </div>
-        <StoreMap latitude={product.store.latitude.toString()} longitude={product.store.longitude.toString()} />
+        <Map latitude={product.store.latitude.toString()} longitude={product.store.longitude.toString()} />
       </section>
     </div>
   );

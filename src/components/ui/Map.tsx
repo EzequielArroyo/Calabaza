@@ -3,7 +3,7 @@ type StoreMapProps = {
   longitude: string;
 };
 
-export function StoreMap({ latitude, longitude }: StoreMapProps) {
+export function Map({ latitude, longitude }: StoreMapProps) {
   const coordinates = `${latitude},${longitude}`;
   const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(coordinates)}&z=15&output=embed`;
 
