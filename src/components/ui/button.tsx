@@ -1,13 +1,31 @@
+import { ButtonHTMLAttributes } from "react";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &{
   children: React.ReactNode;
+  variant?: "primary" | "secondary" | "primary-outlined" | "secondary-outlined";
+  
 }
 
-export function Button({ children, className, ...rest }: ButtonProps) {
+export function Button({ children, variant, ...rest }: ButtonProps) {
+  let className = "";
+  switch (variant) {
+    case "primary":
+      className = "bg-primary text-white";
+      break;
+    case "secondary":
+      className = "bg-secondary text-white";
+      break;
+    case "primary-outlined":
+      className = "border border-primary text-primary";
+      break;
+    case "secondary-outlined":
+      className = "border border-secondary text-secondary";
+      break;
+  }
   return (
     <button
       {...rest}
-      className={`flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 ${className ?? ''}`}
+      className={`mt-3 px-4 py-2 rounded-lg ${className ?? ''}`}
     >
       {children}
     </button>
