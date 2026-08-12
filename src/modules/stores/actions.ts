@@ -15,8 +15,8 @@ export async function createStore(
 ): Promise<ActionResult> {
   const parsed = createStoreSchema.safeParse({
     name: formData.get("name"),
-    description: formData.get("description") || undefined,
-    phone: formData.get("phone") || undefined,
+    description: formData.get("description"),
+    phone: formData.get("phone"),
     address: formData.get("address"),
     latitude: formData.get("latitude"),
     longitude: formData.get("longitude"),
@@ -29,7 +29,7 @@ export async function createStore(
       errors: parsed.error.flatten().fieldErrors,
     };
   }
-
+  console.log("data validation: success", parsed.data);
   const ownerId = await getMockUserId();
   const existingStore = await prisma.store.findUnique({
     where: { ownerId },
@@ -71,18 +71,4 @@ export async function createStore(
   }
 
   redirect("/dashboard");
-}
-export async function createStoreMock(
-  formData: FormData,
-){
-  const parsed = createStoreSchema.safeParse({
-    name: formData.get("name"),
-    description: formData.get("description") || undefined,
-    phone: formData.get("phone") || undefined,
-    address: formData.get("address"),
-    latitude: formData.get("latitude"),
-    longitude: formData.get("longitude"),
-  });
-
-  console.log("Mock create store with data:", parsed.data);
 }
