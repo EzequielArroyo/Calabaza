@@ -72,3 +72,17 @@ export async function createStore(
 
   redirect("/dashboard");
 }
+export async function createStoreMock(
+  formData: FormData,
+){
+  const parsed = createStoreSchema.safeParse({
+    name: formData.get("name"),
+    description: formData.get("description") || undefined,
+    phone: formData.get("phone") || undefined,
+    address: formData.get("address"),
+    latitude: formData.get("latitude"),
+    longitude: formData.get("longitude"),
+  });
+
+  console.log("Mock create store with data:", parsed.data);
+}

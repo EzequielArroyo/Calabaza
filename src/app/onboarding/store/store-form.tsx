@@ -2,7 +2,7 @@
 
 import { useActionState, useState } from "react";
 
-import { InputMap } from "@/components/ui/InputMap";
+import { InputMap } from "@/components/forms/Input-map";
 import { createStore } from "@/modules/stores/actions";
 import type { ActionResult } from "@/modules/shared/actionResult";
 
