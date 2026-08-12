@@ -4,8 +4,8 @@ type InputMapProps = {
 };
 
 export function InputMap({
-  latitude = "-34.6037",
-  longitude = "-58.3816",
+  latitude,
+  longitude,
 }: InputMapProps) {
   
   const coordinates = `${latitude},${longitude}`;

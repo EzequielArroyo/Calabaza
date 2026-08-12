@@ -1,4 +1,6 @@
-export default function InputText({ name, label, type, required = false }: { name: string; label: string; type: string; required?: boolean }) {
+import { FieldError } from "./field-error";
+
+export default function InputText({ name, label, type, required = false, errorMessage }: { name: string; label: string; type: string; required?: boolean; errorMessage?: string }) {
   return (
     <div>
       <label className="block mb-1.5" htmlFor={name}>
@@ -11,5 +13,6 @@ export default function InputText({ name, label, type, required = false }: { nam
         type= {type}
         required={required}
       />
+      <FieldError message={errorMessage} />
     </div>
   );}

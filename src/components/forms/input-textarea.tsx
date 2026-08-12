@@ -1,16 +1,20 @@
+import { FieldError } from "./field-error";
+
 export default function InputTextarea({
   name,
   label,
   maxLength = 500,
   required = false,
+  errorMessage,
 }: {
   name: string;
   label: string;
   maxLength?: number;
   required?: boolean;
+  errorMessage?: string;
 }) {
   return (
-    <>
+    <div>
       <label className="block mb-1.5" htmlFor={name}>
         {label} <span aria-hidden="true">*</span>
       </label>
@@ -21,6 +25,7 @@ export default function InputTextarea({
         maxLength={maxLength}
         required={required}
       />
-    </>
+      <FieldError message={errorMessage} />
+    </div>
   );
 }
