@@ -2,11 +2,21 @@
 import { InputMap } from "@/components/forms/Input-map";
 import InputText from "@/components/forms/input-text";
 import InputTextarea from "@/components/forms/input-textarea";
-import { createStoreMock } from "@/modules/stores/actions";
-import { useState } from "react";
+import { createStore } from "@/modules/stores/actions";
+import { ActionResult } from "@/modules/shared/actionResult";
+import { useState, useActionState } from "react";
+import { Button } from "@/components/ui/button";
 
+const initialState: ActionResult = { success: false };
 export default function CreateStore() {
-  const [location, setLocation] = useState({ latitude: "", longitude: "" });
+  const [location, setLocation] = useState({
+    latitude: "-34.6037",
+    longitude: "-58.3816",
+  });
+  const [state, formAction, isPending] = useActionState(
+    createStore,
+    initialState,
+  );
   function captureCurrentLocation() {
     if (!navigator.geolocation) {
       return;
@@ -27,9 +37,15 @@ export default function CreateStore() {
   }
   return (
     <form
-      action={createStoreMock}
+      action={formAction}
+      noValidate
       className="bg-surface rounded-2xl border border-secondary/15 p-5 shadow-sm sm:p-7"
     >
+      {state.message && !state.success && (
+        <div className="rounded-lg bg-red-50 p-4 text-sm text-red-700">
+          {state.message}
+        </div>
+      )}
       <fieldset className="space-y-6">
         {/* Nombre de la tienda */}
         <InputText
@@ -37,22 +53,25 @@ export default function CreateStore() {
           label="Nombre de la tienda"
           type="text"
           required={true}
+          errorMessage={state.errors?.name?.[0]}
         />
         {/* Descripción */}
         <InputTextarea
           name="description"
           label="Descripción"
           maxLength={500}
-          required={false}
+          required={true}
+          errorMessage={state.errors?.description?.[0]}
         />
         {/* Teléfono & Dirección Física */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InputText name="phone" label="Teléfono" type="tel" />
+          <InputText name="phone" label="Teléfono" type="tel" errorMessage={state.errors?.phone?.[0]} />
           <InputText
             name="address"
             label="Dirección física"
             type="text"
             required={true}
+            errorMessage={state.errors?.address?.[0]}
           />
         </div>
       </fieldset>
@@ -62,23 +81,23 @@ export default function CreateStore() {
         <p className="">
           Usá tu ubicación actual o ingresá las coordenadas manualmente.
         </p>
-        <button
-          className="mt-4 inline-flex min-h-10 items-center justify-center rounded-lg border border-primary px-4 py-2 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+        <Button
           type="button"
+          variant="primary-outlined"
           onClick={captureCurrentLocation}
         >
           {false ? "Obteniendo ubicación..." : "Usar mi ubicación actual"}
-        </button>
+        </Button>
         <InputMap latitude={location.latitude} longitude={location.longitude} />
       </fieldset>
       {/* Submit Action */}
-      <div className="pt-6">
-        <button
-          className="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-4 rounded-lg hover:bg-primary transition-colors focus:ring-4 focus:ring-primary-fixed focus:outline-none shadow-sm"
+      <div className="mt-6 flex justify-end">
+        <Button
           type="submit"
+          variant="secondary"
         >
           Crear tienda
-        </button>
+        </Button>
       </div>
     </form>
   );
