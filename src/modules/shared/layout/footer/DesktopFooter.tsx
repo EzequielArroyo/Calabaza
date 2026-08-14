@@ -10,29 +10,26 @@ const footerLinks = [
 
 export function DesktopFooter() {
   return (
-    <footer className="hidden border-t border-primary/20 bg-secondary/95 text-white md:block">
-      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <div>
-          <p className="text-lg font-semibold">Calabaza</p>
-          <p className="mt-1 text-sm text-white/80">
-            Descubre productos cerca de ti y reserva para recoger en tienda.
-          </p>
+    <footer className="bg-surface border-t border-text-secondary/40 py-6 px-4 md:px-6 mt-auto w-full z-10 pb-24 md:pb-6">
+      <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="text-xl text-primary flex items-center gap-2">Calabaza</div>
+        <nav className="flex flex-wrap justify-center gap-6 text-text-secondary  text-sm">
+          <a href="#" className="hover:text-primary transition-colors">
+            Contacto
+          </a>
+          <a href="#" className="hover:text-primary transition-colors">
+            Sobre Nosotros
+          </a>
+          <a href="#" className="hover:text-primary transition-colors">
+            Términos
+          </a>
+          <a href="#" className="hover:text-primary transition-colors">
+            Privacidad
+          </a>
+        </nav>
+        <div className="text-text-secondary  text-sm">
+          © 2024 Calabaza Marketplace
         </div>
-
-        <div className="flex flex-col gap-4 justify-center sm:flex-row sm:items-center sm:gap-6">
-          <nav className="flex flex-wrap gap-4 text-sm text-white/80">
-            {footerLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="transition hover:text-white">
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-        </div>
-      </div>
-
-      <div className="border-t border-white/10 px-4 py-4 text-center text-sm text-white/70 sm:px-6 lg:px-8">
-        © 2026 Calabaza. Todos los derechos reservados.
       </div>
     </footer>
   );
