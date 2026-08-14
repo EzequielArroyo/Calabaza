@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f3ea;
-  --surface: #ffffff;
+  --background: #ffffff;
+  --surface: #f7f3ea;
   --foreground: #2d5a27;
   --primary: #e36414;
   --secondary: #2d5a27;
   --accent: #f28c28;
   --neutral: #fffbf2;
+  --text-secondary: #584238;
 }
 
 @theme inline {
@@ -18,6 +19,7 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-neutral: var(--neutral);
+  --color-text-secondary: var(--text-secondary);
   --font-sans: "Inter", "Segoe UI", sans-serif;
 }
 
