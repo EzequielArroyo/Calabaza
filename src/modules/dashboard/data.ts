@@ -1,8 +1,8 @@
 import { Prisma } from "@/generated/prisma/client";
-import { CreateProductDto } from "./types"
+import { CreateProductDto, CreateStoreDto } from "./types"
 
 import prisma from "@/lib/prisma";
-export async function getProducts(searchQuery?: string) {
+export async function GetProducts(searchQuery?: string) {
   return prisma.product.findMany({
     where: {
       ...(searchQuery && {
@@ -17,15 +17,75 @@ export async function getProducts(searchQuery?: string) {
     },
   });
 }
-export async function createProductData(data: CreateProductDto) {
+export async function GetProductById(productId:string) {
+  return prisma.product.findUnique(
+    {
+      where:{
+        id: productId
+      }
+    }
+  )
+}
+export async function PostProduct(data: CreateProductDto) {
   return prisma.product.create({
     data,
   });
 }
-export async function getStoreByOwnerId(userId: string){
+
+export async function GetProductByIdAndStore(
+  productId: string,
+  storeId: string,
+) {
+  return prisma.product.findFirst({
+    where: {
+      id: productId,
+      storeId,
+    },
+    select: {
+      id: true,
+    },
+  });
+}
+
+export async function DeleteProductById(productId: string){
+  return prisma.product.delete({
+    where: {
+      id: productId
+    }
+  });
+}
+export async function GetStoreByOwnerId(userId: string) {
   return prisma.store.findUnique({
     where: {
-      ownerId: userId
+      ownerId: userId,
+    },
+    select: {
+      id: true,
+    },
+  });
+}
+export async function PostStore(data: CreateStoreDto){
+  try {
+    return await prisma.store.create({
+      data: {
+        name: data.name,
+        description: data.description,
+        phone: data.phone,
+        address: data.address,
+        latitude: new Prisma.Decimal(data.latitude),
+        longitude: new Prisma.Decimal(data.longitude),
+        ownerId: data.ownerId,
+        isOpen: true,
+      },
+    });
+  } catch (error) {
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === "P2002"
+    ) {
+      return null;
     }
-  })
+
+    throw error;
+  }
 }

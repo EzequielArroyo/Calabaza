@@ -16,3 +16,12 @@ export interface CreateProductDto {
   imageUrl?: string;
   active: boolean;
 }
+export interface  CreateStoreDto {
+  name: string;
+  description: string;
+  phone: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  ownerId: string;
+};

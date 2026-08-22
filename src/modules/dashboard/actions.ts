@@ -1,13 +1,11 @@
 "use server";
 
 import { redirect } from "next/navigation";
-
-import { Prisma } from "@/generated/prisma/client";
+import { revalidatePath } from "next/cache";
 import { getMockUserId } from "@/lib/auth-mock";
-import prisma from "@/lib/prisma";
 import type { ActionResult } from "@/modules/shared/actionResult";
 import { createStoreSchema, createProductSchema } from "./validators";
-import { createProductData } from "./data"
+import { PostStore, GetStoreByOwnerId, GetProductByIdAndStore, DeleteProductById, PostProduct } from "./data"
 export async function createStore(
   _previousState: ActionResult,
   formData: FormData,
@@ -30,10 +28,7 @@ export async function createStore(
   }
   console.log("data validation: success", parsed.data);
   const ownerId = await getMockUserId();
-  const existingStore = await prisma.store.findUnique({
-    where: { ownerId },
-    select: { id: true },
-  });
+  const existingStore = await GetStoreByOwnerId(ownerId);
 
   if (existingStore) {
     return {
@@ -44,27 +39,19 @@ export async function createStore(
   }
 
   try {
-    await prisma.store.create({
-      data: {
-        ...parsed.data,
-        latitude: new Prisma.Decimal(parsed.data.latitude),
-        longitude: new Prisma.Decimal(parsed.data.longitude),
-        ownerId,
-        isOpen: true,
-      },
+    const store = await PostStore({
+      ...parsed.data,
+      ownerId,
     });
-  } catch (error) {
-    if (
-      error instanceof Prisma.PrismaClientKnownRequestError &&
-      error.code === "P2002"
-    ) {
+
+    if (!store) {
       return {
         success: false,
         message:
           "Ya tenés una tienda registrada. Cada usuario puede administrar una sola tienda.",
       };
     }
-
+  } catch {
     return {
       success: false,
       message: "No pudimos crear la tienda. Intentá nuevamente.",
@@ -97,24 +84,8 @@ export async function createProduct(
   }
 
   try {
-    /*
-     * El storeId debe obtenerse del usuario autenticado.
-     *
-     * Ejemplo conceptual:
-     *
-     * const session = await auth();
-     * const store = await getStoreByOwnerId(session.user.id);
-     *
-     * No lo implemento acá porque la implementación exacta
-     * de autenticación/store actual no está definida en las
-     * fuentes disponibles.
-     */
-
       const ownerId = await getMockUserId();
-      const storeId = await prisma.store.findUnique({
-        where: { ownerId },
-        select: { id: true },
-      });
+      const storeId = await GetStoreByOwnerId(ownerId)
         
     if (!storeId) {
       return {
@@ -123,15 +94,10 @@ export async function createProduct(
       };
     }
 
-    await createProductData({
+    await PostProduct({
       ...parsedData.data,
       storeId: storeId.id,
     });
-
-    return {
-      success: true,
-      message: "Producto creado correctamente.",
-    };
   } catch (error) {
     console.error("Error creating product:", error);
 
@@ -140,4 +106,23 @@ export async function createProduct(
       message: "No se pudo crear el producto.",
     };
   }
+  redirect("/dashboard/products");
+}
+
+export async function deleteProduct(productId: string){
+  const ownerId = await getMockUserId();
+  const store = await GetStoreByOwnerId(ownerId);
+  
+  if (!store) {
+    throw new Error("Store not found");
+  }
+
+  const product = await GetProductByIdAndStore(productId, store.id);
+
+  if (!product) {
+    throw new Error("Product not found");
+  }
+
+  await DeleteProductById(product.id);
+  revalidatePath("/products");
 }
