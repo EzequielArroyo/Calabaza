@@ -1,5 +1,5 @@
 import { getCategories } from '@/modules/categories/data';
-import CreateProductForm from '@/modules/dashboard/components/create-product-form'
+import CreateProductForm from '@/modules/dashboard/components/forms/create-product-form'
 const categories = await getCategories();
 export default function CreateProductPage() {
   return (
