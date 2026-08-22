@@ -1,13 +1,14 @@
 import Chip from "@/modules/shared/components/chip";
-import ActionButton from "./action-button";
-import { DeleteIcon, EditIcon } from "@/modules/shared/components/icons/icons";
 import type { ProductItem } from "../types";
 import Image from "next/image";
+import ProductActions from "./product-actions";
+
 type ProductItemProps = ProductItem;
+
 export default function ProductCard(product: ProductItemProps){
     return (
       <tr className="group hover:bg-surface/50 transition-colors">
-        {/* Empty first column */}
+        {/* Image */}
         <td className="hidden md:table-cell w-12 px-4 py-4">
           {product.imageUrl && (
             <Image
@@ -51,14 +52,7 @@ export default function ProductCard(product: ProductItemProps){
 
         {/* Actions */}
         <td className="hidden md:table-cell w-24 px-4 py-4">
-          <div className="flex justify-end gap-2">
-            <ActionButton>
-              <EditIcon />
-            </ActionButton>
-            <ActionButton>
-              <DeleteIcon />
-            </ActionButton>
-          </div>
+          <ProductActions productId={product.id}/>
         </td>
       </tr>
     );
