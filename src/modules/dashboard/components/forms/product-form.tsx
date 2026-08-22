@@ -1,34 +1,58 @@
 "use client";
-import { useActionState } from "react";
-import { useState } from "react";
 
+import { useActionState, useState } from "react";
+import Link from "next/link";
 import type { ActionResult } from "@/modules/shared/actionResult";
 
 import { Button } from "@/modules/shared/components/button";
 import InputText from "@/modules/shared/components/forms/input-text";
 import InputTextarea from "@/modules/shared/components/forms/input-textarea";
-import { createProduct } from "../actions";
 import { ImageUploader } from "@/components/ui/ImageUploader";
+
+type ProductFormProps = {
+  action: (
+    previousState: ActionResult,
+    formData: FormData,
+  ) => Promise<ActionResult>;
+
+  initialValues?: {
+    id?: string;
+    name?: string;
+    description?: string;
+    categoryId?: number;
+    price?: number;
+    stock?: number;
+    imageUrl?: string;
+  };
+
+  categories: {
+    id: number;
+    name: string;
+  }[];
+
+  submitText: string;
+  pendingText: string;
+};
 
 const initialState: ActionResult = {
   success: false,
 };
 
-type CreateProductFormProps = {
-  categories: {
-    id: number;
-    name: string;
-  }[];
-};
-
-export default function CreateProductForm({
+export default function ProductForm({
+  action,
+  initialValues,
   categories,
-}: CreateProductFormProps) {
+  submitText,
+  pendingText,
+}: ProductFormProps) {
   const [state, formAction, isPending] = useActionState(
-    createProduct,
+    action,
     initialState,
   );
-  const [image, setImage] = useState<string>("");
+
+  const [image, setImage] = useState<string>(
+    initialValues?.imageUrl ?? "",
+  );
 
   return (
     <form
@@ -49,6 +73,7 @@ export default function CreateProductForm({
           label="Nombre del producto"
           type="text"
           required
+          defaultValue={initialValues?.name ?? ""}
           errorMessage={state.errors?.name?.[0]}
         />
 
@@ -57,6 +82,7 @@ export default function CreateProductForm({
           name="description"
           label="Descripción"
           maxLength={1000}
+          defaultValue={initialValues?.description ?? ""}
           errorMessage={state.errors?.description?.[0]}
         />
 
@@ -73,7 +99,7 @@ export default function CreateProductForm({
             id="categoryId"
             name="categoryId"
             required
-            defaultValue=""
+            defaultValue={initialValues?.categoryId ?? ""}
             className="w-full rounded-lg border border-secondary/20 bg-surface px-4 py-3 text-sm text-secondary outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
           >
             <option value="" disabled>
@@ -101,6 +127,7 @@ export default function CreateProductForm({
             label="Precio"
             type="number"
             required
+            defaultValue={initialValues?.price ?? ""}
             errorMessage={state.errors?.price?.[0]}
           />
 
@@ -109,19 +136,35 @@ export default function CreateProductForm({
             label="Stock"
             type="number"
             required
+            defaultValue={initialValues?.stock ?? ""}
             errorMessage={state.errors?.stock?.[0]}
           />
         </div>
+
+        {/* Imagen */}
         <ImageUploader
           endpoint="productImages"
           onUploadComplete={(urls) => setImage(urls[0] ?? "")}
         />
-        <input type="hidden" name="imageUrl" value={image ?? ""} />
+
+        <input type="hidden" name="imageUrl" value={image} />
+
+        {/* ID del producto para edición */}
+        {initialValues && "id" in initialValues && (
+          <input type="hidden" name="productId" value={initialValues.id} />
+        )}
       </fieldset>
 
-      <div className="mt-8 flex justify-end">
+      <div className="mt-8 flex justify-end gap-3">
+        <Link
+          href="/dashboard/products"
+          className="rounded-lg border border-secondary/20 px-5 py-3 text-sm font-medium text-secondary transition hover:bg-secondary/5"
+        >
+          Cancelar
+        </Link>
+
         <Button type="submit" variant="secondary">
-          {isPending ? "Creando producto..." : "Crear producto"}
+          {isPending ? pendingText : submitText}
         </Button>
       </div>
     </form>
