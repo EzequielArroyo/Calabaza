@@ -1,5 +1,5 @@
 'use client'
-import ActionButton from "./action-button";
+import ActionButton from "../action-button";
 import { DeleteIcon, EditIcon } from "@/modules/shared/components/icons/icons";
 import { deleteProduct } from "@/modules/dashboard/actions";
 import Link from "next/link";

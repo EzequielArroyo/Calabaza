@@ -1,5 +1,5 @@
 import Chip from "@/modules/shared/components/chip";
-import type { ProductItem } from "../types";
+import type { ProductItem } from "../../types";
 import Image from "next/image";
 import ProductActions from "./product-actions";
 
@@ -43,7 +43,7 @@ export default function ProductCard(product: ProductItemProps){
         </td>
         {/* Stock */}
         <td className="hidden md:table-cell px-4 py-4">
-          ${String(product.stock)}
+          {String(product.stock)}
         </td>
         {/* Status */}
         <td className="hidden md:table-cell px-4 py-4">
