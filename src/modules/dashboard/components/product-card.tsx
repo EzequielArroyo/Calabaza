@@ -13,8 +13,9 @@ export default function ProductCard(product: ProductItemProps){
             <Image
               src={product.imageUrl}
               alt={product.name}
-              fill
-              className="object-cover"
+              width={48}
+              height={48}
+              className="h-12 w-12 rounded-md object-cover"
             />
           )}
         </td>

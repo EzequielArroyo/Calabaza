@@ -7,7 +7,7 @@ export default function ProductGrid(){
           <table className="w-full">
             <thead className="hidden md:table-header-group border-b border-outline bg-surface uppercase tracking-wider">
               <tr>
-                <th className="w-12 px-4 py-4"></th>
+                <th className="w-12 px-4 py-4">Imagen</th>
                 <th className="px-4 py-4 text-left">Nombre</th>
                 <th className="px-4 py-4 text-left">Categoria</th>
                 <th className="px-4 py-4 text-left">Precio</th>
