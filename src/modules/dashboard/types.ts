@@ -25,3 +25,13 @@ export interface  CreateStoreDto {
   longitude: number;
   ownerId: string;
 };
+
+export interface UpdateProductDto {
+  id: string;
+  name: string;
+  description?: string;
+  categoryId: number;
+  price: number;
+  stock: number;
+  imageUrl?: string;
+};

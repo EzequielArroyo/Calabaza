@@ -1,5 +1,5 @@
 import { Prisma } from "@/generated/prisma/client";
-import { CreateProductDto, CreateStoreDto } from "./types"
+import { CreateProductDto, CreateStoreDto, UpdateProductDto } from "./types";
 
 import prisma from "@/lib/prisma";
 export async function GetProducts(searchQuery?: string) {
@@ -31,7 +31,21 @@ export async function PostProduct(data: CreateProductDto) {
     data,
   });
 }
-
+export async function PutProduct(data: UpdateProductDto){
+  return prisma.product.update({
+        where: {
+          id: data.id,
+        },
+        data: {
+          name: data.name,
+          description: data.description,
+          categoryId: data.categoryId,
+          price: data.price,
+          stock: data.stock,
+          imageUrl: data.imageUrl,
+        },
+      });
+}
 export async function GetProductByIdAndStore(
   productId: string,
   storeId: string,

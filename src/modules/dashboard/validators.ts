@@ -34,3 +34,14 @@ export const createProductSchema = z.object({
   imageUrl: optionalUrlSchema,
   active: booleanSchema.default(true),
 });
+
+export const updateProductSchema = z.object({
+  id: uuidSchema,
+  categoryId: intSchema,
+  name: requiredStringSchema(3, 200),
+  description: optionalStringSchema(5000),
+  price: priceSchema,
+  stock: intSchema,
+  imageUrl: optionalUrlSchema,
+  active: booleanSchema.default(true),
+});
