@@ -1,5 +1,5 @@
 import { SearchBar } from "@/components/ui/SearchBar";
-import ProductGrid from "@/modules/dashboard/components/product-grid";
+import ProductGrid from "@/modules/dashboard/components/product/product-grid";
 import Link from "next/link";
 
 export default async function Page(props: {

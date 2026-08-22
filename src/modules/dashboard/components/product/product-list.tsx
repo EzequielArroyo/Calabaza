@@ -1,6 +1,6 @@
-import { GetProducts } from "../data"
-import ProductCard from "./product/product-card";
-import type { ProductItem } from "../types";
+import { GetProducts } from "../../data"
+import ProductCard from "./product-card";
+import type { ProductItem } from "../../types";
 type ProductList = ProductItem[];
 export default async function ProductList({query}:{query?: string}){
      const products: ProductList = await GetProducts(query);
