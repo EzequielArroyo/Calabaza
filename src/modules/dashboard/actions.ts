@@ -4,8 +4,9 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getMockUserId } from "@/lib/auth-mock";
 import type { ActionResult } from "@/modules/shared/actionResult";
-import { createStoreSchema, createProductSchema } from "./validators";
-import { PostStore, GetStoreByOwnerId, GetProductByIdAndStore, DeleteProductById, PostProduct } from "./data"
+import { createStoreSchema, createProductSchema, updateProductSchema } from "./validators";
+import { PostStore, GetStoreByOwnerId, GetProductByIdAndStore, DeleteProductById, PostProduct, GetProductById, PutProduct } from "./data"
+
 export async function createStore(
   _previousState: ActionResult,
   formData: FormData,
@@ -60,7 +61,68 @@ export async function createStore(
 
   redirect("/dashboard");
 }
+export async function updateProduct(
+  _previousState: ActionResult,
+  formData: FormData,
+): Promise<ActionResult> {
+  const ownerId = await getMockUserId();
 
+  if (!ownerId) {
+    return {
+      success: false,
+      message: "No estás autenticado.",
+    };
+  }
+  const parsed = updateProductSchema.safeParse({
+    id: formData.get("productId"),
+    name: formData.get("name"),
+    description: formData.get("description"),
+    categoryId: formData.get("categoryId"),
+    price: formData.get("price"),
+    stock: formData.get("stock"),
+    imageUrl: formData.get("imageUrl"),
+  });
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      errors: parsed.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    const store = await GetStoreByOwnerId(ownerId);
+
+    if (!store) {
+      return {
+        success: false,
+        message: "No se encontró la tienda.",
+      };
+    }
+
+    const product = await GetProductById(parsed.data.id);
+
+    if (!product) {
+      return {
+        success: false,
+        message: "Producto no encontrado.",
+      };
+    }
+
+    await PutProduct(parsed.data)
+
+    revalidatePath("/dashboard/products");
+  } catch (error) {
+    console.error("Error updating product:", error);
+
+    return {
+      success: false,
+      message: "No se pudo actualizar el producto.",
+    };
+  }
+
+  redirect("/dashboard/products");
+}
 export async function createProduct(
   _prevState: ActionResult,
   formData: FormData,
@@ -118,7 +180,6 @@ export async function deleteProduct(productId: string){
   }
 
   const product = await GetProductByIdAndStore(productId, store.id);
-
   if (!product) {
     throw new Error("Product not found");
   }
