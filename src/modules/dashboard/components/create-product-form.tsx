@@ -112,7 +112,10 @@ export default function CreateProductForm({
             errorMessage={state.errors?.stock?.[0]}
           />
         </div>
-
+        <ImageUploader
+          endpoint="productImages"
+          onUploadComplete={(urls) => setImage(urls[0] ?? "")}
+        />
         <input type="hidden" name="imageUrl" value={image ?? ""} />
       </fieldset>
 
