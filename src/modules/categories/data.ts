@@ -1,5 +1,3 @@
-import { Prisma } from "@/generated/prisma/client";
-
 import prisma from "@/lib/prisma";
 
 export async function getCategories() {

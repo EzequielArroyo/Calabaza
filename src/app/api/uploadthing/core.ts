@@ -15,7 +15,7 @@ export const appFileRouter = {
     .onUploadComplete(({ file }) => ({ url: file.ufsUrl })),
 
   productImages: uploadthing({
-    image: { maxFileCount: 3 },
+    image: { maxFileCount: 1 },
   })
     .middleware(authenticateUpload)
     .onUploadComplete(({ file }) => ({ url: file.ufsUrl })),

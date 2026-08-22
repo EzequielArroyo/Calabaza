@@ -1,11 +1,11 @@
 "use client";
-import { InputMap } from "@/components/forms/Input-map";
-import InputText from "@/components/forms/input-text";
-import InputTextarea from "@/components/forms/input-textarea";
-import { createStore } from "@/modules/stores/actions";
+import { InputMap } from "@/modules/shared/components/forms/Input-map";
+import InputText from "@/modules/shared/components/forms/input-text";
+import InputTextarea from "@/modules/shared/components/forms/input-textarea";
+import { createStore } from "@/modules/dashboard/actions";
 import { ActionResult } from "@/modules/shared/actionResult";
 import { useState, useActionState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/modules/shared/components/button";
 
 const initialState: ActionResult = { success: false };
 export default function CreateStore() {

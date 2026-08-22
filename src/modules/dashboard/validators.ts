@@ -1,9 +1,14 @@
 import { z } from "zod";
 
 import {
+  booleanSchema,
+  optionalStringSchema,
+  optionalUrlSchema,
+  priceSchema,
   requiredStringSchema,
+  intSchema,
+  uuidSchema,
 } from "@/modules/shared/validators";
-
 const coordinateSchema = (minimum: number, maximum: number) =>
   z
     .coerce
@@ -18,4 +23,14 @@ export const createStoreSchema = z.object({
   address: requiredStringSchema(1, 50),
   latitude: coordinateSchema(-90, 90),
   longitude: coordinateSchema(-180, 180),
+});
+
+export const createProductSchema = z.object({
+  categoryId: intSchema,
+  name: requiredStringSchema(3, 200),
+  description: optionalStringSchema(5000),
+  price: priceSchema,
+  stock: intSchema,
+  imageUrl: optionalUrlSchema,
+  active: booleanSchema.default(true),
 });

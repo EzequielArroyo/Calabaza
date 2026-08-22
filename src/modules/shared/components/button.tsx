@@ -25,7 +25,7 @@ export function Button({ children, variant, ...rest }: ButtonProps) {
   return (
     <button
       {...rest}
-      className={`mt-3 px-4 py-2 rounded-lg ${className ?? ''}`}
+      className={`px-4 py-2 rounded-lg ${className ?? ''}`}
     >
       {children}
     </button>

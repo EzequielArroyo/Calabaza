@@ -1,4 +1,4 @@
-import Form from "@/modules/stores/components/create-store";
+import Form from "@/modules/dashboard/components/create-store";
 
 
 export default function StoreOnboardingPage() {

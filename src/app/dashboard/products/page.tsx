@@ -1,0 +1,28 @@
+import { SearchBar } from "@/components/ui/SearchBar";
+import { Button } from "@/modules/shared/components/button";
+import ProductGrid from "@/modules/dashboard/components/product-grid";
+import Link from "next/link";
+
+export default function Page(){
+    return (
+      <div className="p-8">
+        <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+          <div>
+            <h2 className="text-2xl md:text-3xl text-text-secondary font-bold mb-2">
+              Gestión de Productos
+            </h2>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full md:w-auto">
+            <SearchBar placeholder="Buscar" />
+            <Link
+              href="/dashboard/products/new"
+              className="bg-primary px-4 py-2 rounded-lg text-white"
+            >
+              Añadir producto
+            </Link>
+          </div>
+        </header>
+        <ProductGrid />
+      </div>
+    );
+}
