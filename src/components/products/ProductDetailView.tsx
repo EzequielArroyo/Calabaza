@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import type { ProductDetail } from "@/modules/products/types";
+import type { ProductDetail } from "@/modules/home/types";
 
 import { AddToCartSection } from "./AddToCartSection";
 import { Map } from "../ui/Map";

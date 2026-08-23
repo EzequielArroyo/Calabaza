@@ -1,5 +1,5 @@
 import { ProductCard } from "./ProductCard";
-import { getProducts } from "@/modules/products/data";
+import { getProducts } from "@/modules/home/data";
 
 export default async function ProductGrid({ query, categorySlug }: { query: string; categorySlug?: string }) {
   const products = await getProducts(query, categorySlug);
