@@ -1,4 +1,4 @@
-import { getMockUserId } from "@/lib/auth-mock";
+import { getMockUserId } from "@/lib/auth";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 const uploadthing = createUploadthing();

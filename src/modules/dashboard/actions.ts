@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { getMockUserId } from "@/lib/auth-mock";
+import { getUserId } from "@/lib/auth";
 import type { ActionResult } from "@/modules/shared/actionResult";
 import { createStoreSchema, createProductSchema, updateProductSchema } from "./validators";
 import { PostStore, GetStoreByOwnerId, GetProductByIdAndStore, DeleteProductById, PostProduct, GetProductById, PutProduct } from "./data"
@@ -28,7 +28,7 @@ export async function createStore(
     };
   }
   console.log("data validation: success", parsed.data);
-  const ownerId = await getMockUserId();
+  const ownerId = await getUserId();
   const existingStore = await GetStoreByOwnerId(ownerId);
 
   if (existingStore) {
@@ -65,7 +65,7 @@ export async function updateProduct(
   _previousState: ActionResult,
   formData: FormData,
 ): Promise<ActionResult> {
-  const ownerId = await getMockUserId();
+  const ownerId = await getUserId();
 
   if (!ownerId) {
     return {
@@ -146,7 +146,7 @@ export async function createProduct(
   }
 
   try {
-      const ownerId = await getMockUserId();
+      const ownerId = await getUserId();
       const storeId = await GetStoreByOwnerId(ownerId)
         
     if (!storeId) {
@@ -172,7 +172,7 @@ export async function createProduct(
 }
 
 export async function deleteProduct(productId: string){
-  const ownerId = await getMockUserId();
+  const ownerId = await getUserId();
   const store = await GetStoreByOwnerId(ownerId);
   
   if (!store) {
