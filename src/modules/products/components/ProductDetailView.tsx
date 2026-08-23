@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-import type { ProductDetail } from "@/modules/home/types";
+import type { ProductDetail } from "@/modules/products/types";
 
 import { AddToCartSection } from "./AddToCartSection";
-import { Map } from "../ui/Map";
+import { Map } from "../../../components/ui/Map";
 
 type ProductDetailViewProps = {
   product: ProductDetail;

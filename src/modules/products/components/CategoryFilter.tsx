@@ -1,7 +1,7 @@
 'use client';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useState, useRef } from 'react';
-import {  Chip } from '../ui/Chip';
+import {  Chip } from '../../../components/ui/Chip';
 import { Category } from '@/modules/categories/types';
 
 type CategoryFilterProps = {

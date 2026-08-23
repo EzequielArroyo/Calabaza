@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ProductCardItem } from "@/modules/home/types";
+import { ProductCardItem } from "@/modules/products/types";
 
 
 type ProductCardProps = {
