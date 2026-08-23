@@ -13,7 +13,7 @@ const prisma = new PrismaClient({
 const MOCK_USER_ID = "00000000-0000-0000-0000-000000000001";
 
 async function main() {
-  console.log("🌱 Iniciando el proceso de seed...");
+  console.log("start seed");
 
   // 1. Crear o actualizar Usuario Mock
   const mockUser = await prisma.user.upsert({
@@ -30,11 +30,11 @@ async function main() {
   });
 
   console.log(
-    `✅ Usuario Mock asegurado: ${mockUser.email} (ID: ${mockUser.id})`,
+    `Usuario Mock: ${mockUser.email} (ID: ${mockUser.id})`,
   );
 
-  console.log("Secuencia reiniciada con éxito.");
-  // 2. Crear Categorías base iniciales
+  console.log("saving categories");
+  // 2. Crear Categorías
   const categories = [
     { name: "Herramientas y Ferretería", slug: "herramientas-y-ferreteria" },
     { name: "Ropa y Moda", slug: "ropa-y-moda" },
@@ -51,7 +51,7 @@ async function main() {
     });
   }
 
-  console.log("✅ Categorías base cargadas exitosamente.");
+  console.log("categories saved");
 }
 
 
