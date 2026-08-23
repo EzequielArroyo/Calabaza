@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
-import { ProductDetailView } from "@/components/products/ProductDetailView";
-import { getProductById } from "@/modules/home/data";
+import { ProductDetailView } from "@/modules/products/components/ProductDetailView";
+import { getProductById } from "@/modules/products/data";
 
 type ProductPageProps = {
   params: Promise<{
