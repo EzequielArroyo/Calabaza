@@ -7,7 +7,7 @@ export default function DashboardNav() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <aside className="sticky top-16 z-20 w-full bg-surface border-b md:w-64 md:border-b-0 md:border-r">
+    <aside className="top-16 z-20 w-full bg-surface border-b md:w-64 md:border-b-0 md:border-r">
       {/* Mobile header */}
       <div className="flex items-center justify-between p-4 md:hidden">
         <div>
