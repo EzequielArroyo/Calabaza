@@ -98,6 +98,7 @@ model Product {
   store        Store      @relation(fields: [storeId], references: [id])
   category     Category   @relation(fields: [categoryId], references: [id])
   orderItems   OrderItem[]
+  cartItems CartItem[]
 
   @@index([storeId])
   @@index([categoryId])
@@ -163,7 +164,8 @@ model CartItem {
   quantity  Int
   price     Decimal @db.Decimal(10, 2)
 
-  cart Cart @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cart    Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
 
   @@unique([cartId, productId])
   @@index([productId])
