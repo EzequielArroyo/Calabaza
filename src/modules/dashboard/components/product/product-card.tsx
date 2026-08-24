@@ -5,55 +5,75 @@ import ProductActions from "./product-actions";
 
 type ProductItemProps = ProductItem;
 
-export default function ProductCard(product: ProductItemProps){
-    return (
-      <tr className="group hover:bg-surface/50 transition-colors">
-        {/* Image */}
-        <td className="hidden md:table-cell w-12 px-4 py-4">
-          {product.imageUrl && (
-            <Image
-              src={product.imageUrl}
-              alt={product.name}
-              width={48}
-              height={48}
-              className="h-12 w-12 rounded-md object-cover"
-            />
-          )}
-        </td>
+export default function ProductCard(product: ProductItemProps) {
+  return (
+    <tr className="group hover:bg-surface/50 transition-colors">
+      {/* Image - Desktop */}
+      <td className="hidden md:table-cell w-12 px-4 py-4">
+        {product.imageUrl && (
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            width={48}
+            height={48}
+            className="h-12 w-12 rounded-md object-cover"
+          />
+        )}
+      </td>
 
-        {/* Product Name */}
-        <td className="px-4 py-4">
-          <p className="truncate group-hover:text-primary transition-colors">
+      {/* Product */}
+      <td className="px-4 py-4">
+        <div className="flex flex-col gap-2">
+          {/* Nombre */}
+          <p className="truncate font-medium group-hover:text-primary transition-colors">
             {product.name}
           </p>
 
-          <p className="md:hidden mt-0.5">
-            {product.category.name} • ${String(product.price)}
-          </p>
-        </td>
+          {/* Mobile */}
+          <div className="flex flex-col gap-2 md:hidden">
+            <div className="flex items-center gap-2 text-sm text-on-surface-variant">
+              <span>{product.category.name}</span>
+              <span>•</span>
+              <span>${String(product.price)}</span>
+            </div>
 
-        {/* Category */}
-        <td className="hidden md:table-cell px-4 py-4">
-          <Chip text={product.category.name} />
-        </td>
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3 text-sm">
+                <span>Stock: {String(product.stock)}</span>
 
-        {/* Price */}
-        <td className="hidden md:table-cell px-4 py-4">
-          ${String(product.price)}
-        </td>
-        {/* Stock */}
-        <td className="hidden md:table-cell px-4 py-4">
-          {String(product.stock)}
-        </td>
-        {/* Status */}
-        <td className="hidden md:table-cell px-4 py-4">
-          <Chip text={product.active ? "Activo" : "Inactivo"} />
-        </td>
+                <Chip text={product.active ? "Activo" : "Inactivo"} />
+              </div>
 
-        {/* Actions */}
-        <td className="hidden md:table-cell w-24 px-4 py-4">
-          <ProductActions productId={product.id}/>
-        </td>
-      </tr>
-    );
+              <ProductActions productId={product.id} />
+            </div>
+          </div>
+        </div>
+      </td>
+
+      {/* Category - Desktop */}
+      <td className="hidden md:table-cell px-4 py-4">
+        <Chip text={product.category.name} />
+      </td>
+
+      {/* Price - Desktop */}
+      <td className="hidden md:table-cell px-4 py-4">
+        ${String(product.price)}
+      </td>
+
+      {/* Stock - Desktop */}
+      <td className="hidden md:table-cell px-4 py-4">
+        {String(product.stock)}
+      </td>
+
+      {/* Status - Desktop */}
+      <td className="hidden md:table-cell px-4 py-4">
+        <Chip text={product.active ? "Activo" : "Inactivo"} />
+      </td>
+
+      {/* Actions - Desktop */}
+      <td className="hidden md:table-cell w-24 px-4 py-4">
+        <ProductActions productId={product.id} />
+      </td>
+    </tr>
+  );
 }
