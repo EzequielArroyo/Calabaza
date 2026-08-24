@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CartItemActions from "./cart-item-actions";
 
 export type CartItemView = {
   id: string;
@@ -75,36 +76,9 @@ export function Cart({ items }: CartProps) {
                     <p className="mt-1 font-semibold text-primary">{price}</p>
                   </div>
 
-                  <div className="flex items-center gap-3 rounded-full border border-primary/15 bg-primary/5 p-1">
-                    <button
-                      type="button"
-                      className="flex h-8 w-8 items-center justify-center rounded-full text-secondary transition hover:bg-primary/10"
-                      aria-label={`Disminuir cantidad de ${item.product.name}`}
-                    >
-                      −
-                    </button>
 
-                    <span className="w-5 text-center font-semibold text-secondary">
-                      {item.quantity}
-                    </span>
-
-                    <button
-                      type="button"
-                      className="flex h-8 w-8 items-center justify-center rounded-full text-secondary transition hover:bg-primary/10"
-                      aria-label={`Aumentar cantidad de ${item.product.name}`}
-                    >
-                      +
-                    </button>
-                  </div>
                 </div>
-
-                <button
-                  type="button"
-                  className="absolute right-3 top-3 text-sm text-secondary/50 transition hover:text-primary"
-                  aria-label={`Eliminar ${item.product.name} del carrito`}
-                >
-                  ✕
-                </button>
+                <CartItemActions itemId={item.id} itemQuantity={item.quantity}/>
               </article>
             );
           })}
