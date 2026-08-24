@@ -1,10 +1,10 @@
-import { getMockUserId } from "@/lib/auth";
+import { getUserId } from "@/lib/auth";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 const uploadthing = createUploadthing();
 
 const authenticateUpload = async () => ({
-  userId: await getMockUserId(),
+  userId: await getUserId(),
 });
 
 export const appFileRouter = {
