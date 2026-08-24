@@ -85,6 +85,7 @@ export async function incrementCartItem(itemId: string) {
     itemId,
     quantity: 1,
   });
+  revalidatePath("/cart");
 }
 
 export async function decrementCartItem(itemId: string) {
@@ -116,6 +117,7 @@ export async function decrementCartItem(itemId: string) {
       });
     }
   }
+  revalidatePath("/cart");
 }
 
 export async function removeCartItem(itemId: string) {
@@ -141,4 +143,5 @@ export async function removeCartItem(itemId: string) {
       cartId: cart.id,
     });
   }
+  revalidatePath("/cart");
 }
