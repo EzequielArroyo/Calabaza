@@ -10,7 +10,7 @@ export function Button({ children, variant, ...rest }: ButtonProps) {
   let className = "";
   switch (variant) {
     case "primary":
-      className = "bg-primary text-white";
+      className = "bg-primary text-white hover:bg-primary/90";
       break;
     case "secondary":
       className = "bg-secondary text-white";
