@@ -19,6 +19,7 @@ export function ProductCard({ product }: ProductCardProps) {
               src={product.imageUrl}
               alt={product.name}
               fill
+              sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 33vw"
               className="object-cover"
             />
           </div>
@@ -37,7 +38,9 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-secondary">{product.name}</h3>
+          <h3 className="text-lg font-semibold text-secondary">
+            {product.name}
+          </h3>
           <p className="mt-1 text-sm text-secondary/70">
             {product.store?.name ?? "Tienda local"}
           </p>
@@ -48,7 +51,9 @@ export function ProductCard({ product }: ProductCardProps) {
         ) : null}
 
         <div className="mt-2 flex items-center justify-between gap-3">
-          <p className="text-lg font-semibold text-secondary">{formattedPrice}</p>
+          <p className="text-lg font-semibold text-secondary">
+            {formattedPrice}
+          </p>
           <Link
             href={`/products/${product.id}`}
             className="rounded-full bg-secondary px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-primary"

@@ -4,11 +4,11 @@ import CartItemActions from "./cart-item-actions";
 export type CartItemView = {
   id: string;
   quantity: number;
-  price: number;
   product: {
     id: string;
     name: string;
     imageUrl: string | null;
+    price: number;
   };
 };
 
@@ -18,7 +18,7 @@ type CartProps = {
 
 export function Cart({ items }: CartProps) {
   const subtotal = items.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + item.product.price * item.quantity,
     0,
   );
 
@@ -42,7 +42,7 @@ export function Cart({ items }: CartProps) {
       <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
         <div className="flex flex-col gap-4 lg:col-span-8">
           {items.map((item) => {
-            const price = item.price.toLocaleString("es-AR", {
+            const price = item.product.price.toLocaleString("es-AR", {
               style: "currency",
               currency: "ARS",
             });

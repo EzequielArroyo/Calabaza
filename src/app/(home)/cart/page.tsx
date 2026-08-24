@@ -19,7 +19,10 @@ export default async function Page() {
 
   const items = cart.items.map((item) => ({
     ...item,
-    price: Number(item.price),
+    product: {
+      ...item.product,
+      price: Number(item.product.price),
+    },
   }));
 
   return <Cart items={items} />;

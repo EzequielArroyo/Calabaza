@@ -20,13 +20,13 @@ export async function getCartByUserId(userId: string) {
         select: {
           id: true,
           quantity: true,
-          price: true,
           product: {
             select: {
               id: true,
               name: true,
               imageUrl: true,
               stock: true,
+              price: true,
             },
           },
         },
