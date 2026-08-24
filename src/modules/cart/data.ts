@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { Prisma } from "@/generated/prisma/client";
 import type {
   CreateCartInput,
   CreateCartItemInput,
@@ -8,6 +9,7 @@ import type {
   DeleteCartItemInput,
 } from "./types";
 
+type DbClient = typeof prisma | Prisma.TransactionClient;
 export async function getCartByUserId(userId: string) {
   return prisma.cart.findUnique({
     where: {
@@ -51,8 +53,11 @@ export async function createCart(input: CreateCartInput) {
   });
 }
 
-export async function deleteCart(input: DeleteCartInput) {
-  return prisma.cart.delete({
+export async function deleteCart(
+  input: DeleteCartInput,
+  db: DbClient = prisma,
+) {
+  return db.cart.delete({
     where: {
       id: input.cartId,
     },
