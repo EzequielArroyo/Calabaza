@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { getUserId } from "@/lib/auth";
 import type { ActionResult } from "@/modules/shared/actionResult";
 import { createStoreSchema, createProductSchema, updateProductSchema } from "./validators";
-import { PostStore, GetStoreByOwnerId, GetProductByIdAndStore, DeleteProductById, PostProduct, GetProductById, PutProduct } from "./data"
+import { PostStore, getStoreByOwnerId, GetProductByIdAndStore, DeleteProductById, PostProduct, GetProductById, PutProduct } from "./data"
 
 export async function createStore(
   _previousState: ActionResult,
@@ -29,7 +29,7 @@ export async function createStore(
   }
   console.log("data validation: success", parsed.data);
   const ownerId = await getUserId();
-  const existingStore = await GetStoreByOwnerId(ownerId);
+  const existingStore = await getStoreByOwnerId(ownerId);
 
   if (existingStore) {
     return {
@@ -91,7 +91,7 @@ export async function updateProduct(
   }
 
   try {
-    const store = await GetStoreByOwnerId(ownerId);
+    const store = await getStoreByOwnerId(ownerId);
 
     if (!store) {
       return {
@@ -147,7 +147,7 @@ export async function createProduct(
 
   try {
       const ownerId = await getUserId();
-      const storeId = await GetStoreByOwnerId(ownerId)
+      const storeId = await getStoreByOwnerId(ownerId)
         
     if (!storeId) {
       return {
@@ -173,7 +173,7 @@ export async function createProduct(
 
 export async function deleteProduct(productId: string){
   const ownerId = await getUserId();
-  const store = await GetStoreByOwnerId(ownerId);
+  const store = await getStoreByOwnerId(ownerId);
   
   if (!store) {
     throw new Error("Store not found");
