@@ -1,4 +1,4 @@
-import Chip from "@/modules/shared/components/chip";
+import Chip from "@/components/ui/chip";
 import type { ProductItem } from "../../types";
 import Image from "next/image";
 import ProductActions from "./product-actions";

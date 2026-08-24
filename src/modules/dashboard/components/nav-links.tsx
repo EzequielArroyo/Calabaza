@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
-import { DashBoardIcon, ProductIcon, OrdersIcon, ConfigurationIcon } from "@/modules/shared/components/icons/icons";
+import { DashBoardIcon, ProductIcon, OrdersIcon, ConfigurationIcon } from "@/components/ui/icons";
 
 export default function NavLinks(){
 

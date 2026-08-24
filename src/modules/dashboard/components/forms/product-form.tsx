@@ -4,10 +4,10 @@ import { useActionState, useState } from "react";
 import Link from "next/link";
 import type { ActionResult } from "@/modules/shared/actionResult";
 
-import { Button } from "@/modules/shared/components/button";
-import InputText from "@/modules/shared/components/forms/input-text";
-import InputTextarea from "@/modules/shared/components/forms/input-textarea";
-import { ImageUploader } from "@/components/ui/ImageUploader";
+import { Button } from "@/components/ui/button";
+import InputText from "@/components/ui/forms/input-text";
+import InputTextarea from "@/components/ui/forms/input-textarea";
+import { ImageUploader } from "@/components/ui/forms/ImageUploader";
 
 type ProductFormProps = {
   action: (

@@ -1,5 +1,5 @@
-import { Footer } from "@/modules/shared/layout/footer/Footer";
-import { Header } from "@/modules/shared/layout/header/Header";
+import { Footer } from "@/components/layout/footer/Footer";
+import { Header } from "@/components/layout/header/Header";
 import SideNav from "@/modules/dashboard/components/side-nav"
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

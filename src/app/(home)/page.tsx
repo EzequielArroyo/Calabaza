@@ -1,5 +1,5 @@
-import Categories from "@/modules/products/components/Categories";
-import ProductGrid from "@/modules/products/components/ProductGrid";
+import Categories from "@/modules/home/components/Category-filter";
+import ProductGrid from "@/modules/home/components/ProductGrid";
 import { SearchBar } from "@/components/ui/SearchBar";
 
 export default async function Page(props: {

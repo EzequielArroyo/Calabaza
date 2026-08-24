@@ -1,14 +1,14 @@
 'use client';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useState, useRef } from 'react';
-import {  Chip } from '../../../components/ui/Chip';
+import {  CategoryChip } from './Category-chip';
 import { Category } from '@/modules/categories/types';
 
 type CategoryFilterProps = {
   categories: Category[];
 };
 
-export function CategoryFilter({ categories }: CategoryFilterProps) {
+export function CategoryFilterItems({ categories }: CategoryFilterProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -69,7 +69,7 @@ export function CategoryFilter({ categories }: CategoryFilterProps) {
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {categories.map((category) => (
-                <Chip
+                <CategoryChip
                 key={category.id}
                 category={category}
                 isActive={searchParams.get('category') === category.slug}

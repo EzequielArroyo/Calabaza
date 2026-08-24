@@ -1,9 +1,9 @@
 import { getCategories } from '@/modules/categories/data';
-import { CategoryFilter } from './CategoryFilter';
+import { CategoryFilterItems } from './category-filter-items';
 import { Category } from '@/modules/categories/types';
 
-export default async function Categories() {
+export default async function CategoryFilter() {
   const categories: Category[] = await getCategories(
   );
-  return <CategoryFilter categories={categories} />;
+  return <CategoryFilterItems categories={categories} />;
 }
