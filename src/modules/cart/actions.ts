@@ -37,34 +37,31 @@ export async function addToCart(input: AddToCartInput) {
       productId: product.id,
       quantity,
     });
+  } else {
+    if (cart.storeId !== product.storeId) {
+      throw new Error("Cart contains products from another store");
+    }
 
-    return;
+    const existingItem = cart.items.find(
+      (item) => item.product.id === product.id,
+    );
+
+    if (existingItem) {
+      await incrementCartItemQuantity({
+        itemId: existingItem.id,
+        quantity,
+      });
+    } else {
+      await createCartItem({
+        cartId: cart.id,
+        productId: product.id,
+        price: product.price,
+        quantity,
+      });
+    }
   }
 
-  if (cart.storeId !== product.storeId) {
-    throw new Error("Cart contains products from another store");
-  }
-
-  const existingItem = cart.items.find(
-    (item) => item.product.id === product.id,
-  );
-
-  if (existingItem) {
-    await incrementCartItemQuantity({
-      itemId: existingItem.id,
-      quantity,
-    });
-
-    return;
-  }
-
-  await createCartItem({
-    cartId: cart.id,
-    productId: product.id,
-    price: product.price,
-    quantity,
-  });
-  revalidatePath("/cart")
+  revalidatePath("/cart");
 }
 export async function incrementCartItem(itemId: string) {
   const userId = await getUserId();
