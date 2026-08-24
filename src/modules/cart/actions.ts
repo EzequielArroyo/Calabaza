@@ -39,7 +39,7 @@ if (!Number.isInteger(quantity) || quantity < 1) {
     throw new Error("Cart contains products from another store");
   }
 
-  const existingItem = cart.items.find((item) => item.productId === product.id);
+  const existingItem = cart.items.find((item) => item.product.id === product.id);
 
   if (existingItem) {
     await incrementCartItemQuantity({
