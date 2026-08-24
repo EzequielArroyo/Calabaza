@@ -13,6 +13,10 @@ export interface CreateCartInput {
   quantity: number;
 }
 
+export interface DeleteCartInput {
+  cartId: string;
+}
+
 export interface CreateCartItemInput {
   cartId: string;
   productId: string;
@@ -23,4 +27,11 @@ export interface CreateCartItemInput {
 export interface IncrementCartItemQuantityInput {
   itemId: string;
   quantity: number;
+}
+export interface DecrementCartItemQuantityInput {
+  itemId: string;
+}
+
+export interface DeleteCartItemInput {
+  itemId: string;
 }

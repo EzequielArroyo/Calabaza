@@ -2,7 +2,10 @@ import prisma from "@/lib/prisma";
 import type {
   CreateCartInput,
   CreateCartItemInput,
+  DeleteCartInput,
   IncrementCartItemQuantityInput,
+  DecrementCartItemQuantityInput,
+  DeleteCartItemInput,
 } from "./types";
 
 export async function getCartByUserId(userId: string) {
@@ -48,6 +51,14 @@ export async function createCart(input: CreateCartInput) {
   });
 }
 
+export async function deleteCart(input: DeleteCartInput) {
+  return prisma.cart.delete({
+    where: {
+      id: input.cartId,
+    },
+  });
+}
+
 export async function createCartItem(input: CreateCartItemInput) {
   return prisma.cartItem.create({
     data: {
@@ -70,6 +81,28 @@ export async function incrementCartItemQuantity(
       quantity: {
         increment: input.quantity,
       },
+    },
+  });
+}
+export async function decrementCartItemQuantity(
+  input: DecrementCartItemQuantityInput,
+) {
+  return prisma.cartItem.update({
+    where: {
+      id: input.itemId,
+    },
+    data: {
+      quantity: {
+        decrement: 1,
+      },
+    },
+  });
+}
+
+export async function deleteCartItem(input: DeleteCartItemInput) {
+  return prisma.cartItem.delete({
+    where: {
+      id: input.itemId,
     },
   });
 }
