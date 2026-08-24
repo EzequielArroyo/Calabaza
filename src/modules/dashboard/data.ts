@@ -68,7 +68,7 @@ export async function DeleteProductById(productId: string){
     }
   });
 }
-export async function GetStoreByOwnerId(userId: string) {
+export async function getStoreByOwnerId(userId: string) {
   return prisma.store.findUnique({
     where: {
       ownerId: userId,
