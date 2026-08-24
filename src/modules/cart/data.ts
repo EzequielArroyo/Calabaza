@@ -45,7 +45,6 @@ export async function createCart(input: CreateCartInput) {
       items: {
         create: {
           productId: input.productId,
-          price: input.price,
           quantity: input.quantity,
         },
       },
@@ -56,7 +55,7 @@ export async function createCart(input: CreateCartInput) {
 export async function deleteCart(
   input: DeleteCartInput,
   db: DbClient = prisma,
-) {
+){
   return db.cart.delete({
     where: {
       id: input.cartId,

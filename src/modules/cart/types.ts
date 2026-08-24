@@ -9,7 +9,6 @@ export interface CreateCartInput {
   userId: string;
   storeId: string;
   productId: string;
-  price: Decimal;
   quantity: number;
 }
 
