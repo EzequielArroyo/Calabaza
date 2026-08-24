@@ -68,7 +68,6 @@ export async function createCartItem(input: CreateCartItemInput) {
     data: {
       cartId: input.cartId,
       productId: input.productId,
-      price: input.price,
       quantity: input.quantity,
     },
   });
