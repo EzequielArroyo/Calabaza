@@ -11,6 +11,7 @@ import {
 } from "./data";
 import { getProductById } from "../products/data";
 import type { AddToCartInput } from "./types";
+import { revalidatePath } from "next/cache";
 
 export async function addToCart(input: AddToCartInput) {
   const userId = await getUserId();
@@ -63,6 +64,7 @@ export async function addToCart(input: AddToCartInput) {
     price: product.price,
     quantity,
   });
+  revalidatePath("/cart")
 }
 export async function incrementCartItem(itemId: string) {
   const userId = await getUserId();
