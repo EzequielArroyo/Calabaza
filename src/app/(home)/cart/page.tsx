@@ -1,26 +1,26 @@
 import { getUserId } from "@/lib/auth";
 import { getCartByUserId } from "@/modules/cart/data";
+import { Cart } from "@/modules/cart/components/cart";
 
-export default async function CartPage() {
+export default async function Page() {
   const userId = await getUserId();
 
   const cart = await getCartByUserId(userId);
 
   if (!cart || cart.items.length === 0) {
-    return <p>Your cart is empty</p>;
+    return (
+      <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+        <h1 className="text-3xl font-bold text-secondary">Tu carrito</h1>
+
+        <p className="mt-4 text-secondary/70">Tu carrito está vacío.</p>
+      </main>
+    );
   }
 
-  return (
-    <main>
-      <h1>Cart</h1>
+  const items = cart.items.map((item) => ({
+    ...item,
+    price: Number(item.price),
+  }));
 
-      {cart.items.map((item) => (
-        <div key={item.id}>
-          <p>{item.product.name}</p>
-          <p>Quantity: {item.quantity}</p>
-          <p>Price: {item.price.toString()}</p>
-        </div>
-      ))}
-    </main>
-  );
+  return <Cart items={items} />;
 }
