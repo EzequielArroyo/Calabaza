@@ -20,11 +20,8 @@ export default function ProductCard(product: ProductItemProps) {
           />
         )}
       </td>
-
-      {/* Product */}
       <td className="px-4 py-4">
         <div className="flex flex-col gap-2">
-          {/* Nombre */}
           <p className="truncate font-medium group-hover:text-primary transition-colors">
             {product.name}
           </p>
@@ -49,28 +46,19 @@ export default function ProductCard(product: ProductItemProps) {
           </div>
         </div>
       </td>
-
-      {/* Category - Desktop */}
+      
       <td className="hidden md:table-cell px-4 py-4">
         <Chip text={product.category.name} />
       </td>
-
-      {/* Price - Desktop */}
       <td className="hidden md:table-cell px-4 py-4">
         ${String(product.price)}
       </td>
-
-      {/* Stock - Desktop */}
       <td className="hidden md:table-cell px-4 py-4">
         {String(product.stock)}
       </td>
-
-      {/* Status - Desktop */}
       <td className="hidden md:table-cell px-4 py-4">
         <Chip text={product.active ? "Activo" : "Inactivo"} />
       </td>
-
-      {/* Actions - Desktop */}
       <td className="hidden md:table-cell w-24 px-4 py-4">
         <ProductActions productId={product.id} />
       </td>
