@@ -1,12 +1,15 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { addToCart } from "@/modules/cart/actions";
 
 type AddToCartSectionProps = {
+  productId: string;
   stock: number;
 };
 
-export function AddToCartSection({ stock }: AddToCartSectionProps) {
+export function AddToCartSection({ productId, stock }: AddToCartSectionProps) {
   const maximumQuantity = Math.max(0, Math.min(stock, 10));
   const [quantity, setQuantity] = useState(1);
 
@@ -34,13 +37,16 @@ export function AddToCartSection({ stock }: AddToCartSectionProps) {
           ))}
         </select>
       </label>
-      <button
-        type="button"
-        className="rounded-lg bg-primary px-5 py-2.5 font-semibold text-white transition hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-        aria-label={`Add ${quantity} ${quantity === 1 ? "item" : "items"} to cart`}
+      <Button
+        variant="primary"
+        onClick={() =>
+          addToCart({
+            productId,
+            quantity,
+          })}
       >
         Add to Cart
-      </button>
+      </Button>
     </div>
   );
 }

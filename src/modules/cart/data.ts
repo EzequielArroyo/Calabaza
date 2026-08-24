@@ -10,8 +10,24 @@ export async function getCartByUserId(userId: string) {
     where: {
       userId,
     },
-    include: {
-      items: true,
+    select: {
+      id: true,
+      storeId: true,
+      items: {
+        select: {
+          id: true,
+          quantity: true,
+          price: true,
+          product: {
+            select: {
+              id: true,
+              name: true,
+              imageUrl: true,
+              stock: true,
+            },
+          },
+        },
+      },
     },
   });
 }
@@ -34,7 +50,12 @@ export async function createCart(input: CreateCartInput) {
 
 export async function createCartItem(input: CreateCartItemInput) {
   return prisma.cartItem.create({
-    data: input,
+    data: {
+      cartId: input.cartId,
+      productId: input.productId,
+      price: input.price,
+      quantity: input.quantity,
+    },
   });
 }
 

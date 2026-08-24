@@ -38,20 +38,29 @@ export function ProductDetailView({ product }: ProductDetailViewProps) {
           </div>
 
           {product.description ? (
-            <p className="text-base leading-7 text-secondary/80">{product.description}</p>
+            <p className="text-base leading-7 text-secondary/80">
+              {product.description}
+            </p>
           ) : null}
 
-          <AddToCartSection stock={product.stock} />
+          <AddToCartSection stock={product.stock} productId={product.id} />
         </section>
       </div>
 
       <section className="mt-6 grid gap-6 rounded-3xl border border-primary/20 bg-white p-4 shadow-sm sm:p-6 lg:grid-cols-2">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-primary">Store</p>
-          <h2 className="mt-2 text-2xl font-bold text-secondary">{product.store.name}</h2>
+          <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+            Store
+          </p>
+          <h2 className="mt-2 text-2xl font-bold text-secondary">
+            {product.store.name}
+          </h2>
           <p className="mt-2 text-secondary/80">{product.store.address}</p>
         </div>
-        <Map latitude={product.store.latitude.toString()} longitude={product.store.longitude.toString()} />
+        <Map
+          latitude={product.store.latitude.toString()}
+          longitude={product.store.longitude.toString()}
+        />
       </section>
     </div>
   );
