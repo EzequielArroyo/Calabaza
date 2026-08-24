@@ -34,7 +34,6 @@ export async function addToCart(input: AddToCartInput) {
       userId,
       storeId: product.storeId,
       productId: product.id,
-      price: product.price,
       quantity,
     });
 
