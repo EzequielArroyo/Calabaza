@@ -10,7 +10,7 @@ export default async function Page(props: {
     const searchParams = await props.searchParams;
     const query = searchParams?.query || "";
   return (
-    <div className="p-8">
+    <div className="min-h-[100vh] p-8">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
         <div>
           <h2 className="text-2xl md:text-3xl text-text-secondary font-bold mb-2">
@@ -27,7 +27,7 @@ export default async function Page(props: {
           </Link>
         </div>
       </header>
-      <ProductGrid query={query}/>
+      <ProductGrid query={query} />
     </div>
   );
 }
