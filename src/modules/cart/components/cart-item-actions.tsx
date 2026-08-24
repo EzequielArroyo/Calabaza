@@ -26,8 +26,8 @@ export default function CartItemActions({itemId, itemQuantity} : { itemId: strin
         router.refresh();
       }
     return (
-      <div className="flex  items-center gap-5">
-        <div className="flex items-center gap-3 rounded-full border border-primary/15 bg-primary/5 p-1">
+      <div className="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-start">
+        <div className="flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 p-1">
           <Button onClick={handleDecrement}>
             <MinusIcon />
           </Button>
@@ -40,6 +40,7 @@ export default function CartItemActions({itemId, itemQuantity} : { itemId: strin
             <PlusIcon />
           </Button>
         </div>
+
         <Button onClick={handleRemove}>
           <DeleteIcon />
         </Button>

@@ -51,25 +51,25 @@ export function Cart({ items }: CartProps) {
             return (
               <article
                 key={item.id}
-                className="relative flex gap-4 rounded-2xl border border-primary/15 bg-white p-4 shadow-sm"
+                className="relative flex flex-col gap-4 rounded-2xl border border-primary/15 bg-white p-4 shadow-sm sm:flex-row sm:items-center"
               >
-                <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-primary/5">
-                  {item.product.imageUrl ? (
-                    <Image
-                      src={item.product.imageUrl}
-                      alt={item.product.name}
-                      fill
-                      className="object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center text-xs text-secondary/50">
-                      Sin imagen
-                    </div>
-                  )}
-                </div>
+                <div className="flex gap-4">
+                  <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-primary/5">
+                    {item.product.imageUrl ? (
+                      <Image
+                        src={item.product.imageUrl}
+                        alt={item.product.name}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-xs text-secondary/50">
+                        Sin imagen
+                      </div>
+                    )}
+                  </div>
 
-                <div className="flex flex-1 flex-col justify-between gap-4 sm:flex-row sm:items-center">
-                  <div>
+                  <div className="flex flex-1 flex-col justify-center">
                     <h2 className="text-lg font-bold text-secondary">
                       {item.product.name}
                     </h2>
@@ -77,10 +77,13 @@ export function Cart({ items }: CartProps) {
                     <p className="mt-1 font-semibold text-primary">{price}</p>
                   </div>
                 </div>
-                <CartItemActions
-                  itemId={item.id}
-                  itemQuantity={item.quantity}
-                />
+
+                <div className="sm:ml-auto">
+                  <CartItemActions
+                    itemId={item.id}
+                    itemQuantity={item.quantity}
+                  />
+                </div>
               </article>
             );
           })}
