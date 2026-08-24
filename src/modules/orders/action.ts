@@ -53,5 +53,5 @@ export async function createOrderAction() {
   );
 
   revalidatePath("/cart");
-  revalidatePath("/orders");
+  revalidatePath("dashboard/orders");
 }
